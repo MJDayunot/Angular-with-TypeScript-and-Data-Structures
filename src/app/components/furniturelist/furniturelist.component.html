@@ -1,0 +1,11 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter furniture item" [(ngModel)]="furnitureName" />
+  <br />
+  <button class="btn btn-primary" (click)="addFurniture()">Add Furniture</button>
+</div>
+
+<ul class="furniture-list">
+  <li *ngFor="let furniture of furnitureList">
+    {{ furniture }}
+  </li>
+</ul>

@@ -1,0 +1,11 @@
+
+<div class="centered-container">
+  <input type="text" placeholder="Enter video title" [(ngModel)]="videoTitle" />
+  <button class="btn btn-primary" (click)="addVideo()">Add Video</button>
+</div>
+
+<ul class="video-list">
+  <li *ngFor="let video of videoList">
+    {{ video }}
+  </li>
+</ul>

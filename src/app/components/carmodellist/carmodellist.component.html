@@ -1,0 +1,17 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter car make" [(ngModel)]="carMake" />
+  <br>
+  <input type="text" placeholder="Enter car model" [(ngModel)]="carModel" />
+  <br>
+  <input type="number" placeholder="Enter release year" [(ngModel)]="carYear" />
+  <br>
+  <button class="btn btn-primary" (click)="addCarModel()">Add Car Model</button>
+</div>
+
+<ul class="car-model-list">
+  <li *ngFor="let car of carModelList">
+    <strong>Make:</strong> {{ car.make }},
+    <strong>Model:</strong> {{ car.model }},
+    <strong>Year:</strong> {{ car.year }}
+  </li>
+</ul>

@@ -1,0 +1,14 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter country name" [(ngModel)]="countryName" />
+  <br />
+  <input type="text" placeholder="Enter continent" [(ngModel)]="countryContinent" />
+  <br />
+  <button class="btn btn-primary" (click)="addCountry()">Add Country</button>
+
+  <ul class="country-list">
+    <li *ngFor="let country of countryList">
+      <strong>Name:</strong> {{ country.name }},
+      <strong>Continent:</strong> {{ country.continent }}
+    </li>
+  </ul>
+</div>

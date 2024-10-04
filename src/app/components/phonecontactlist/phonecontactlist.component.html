@@ -1,0 +1,18 @@
+
+<div class="centered-container">
+  <input type="text" placeholder="Enter contact name" [(ngModel)]="contactName" />
+  <br>
+  <input type="text" placeholder="Enter phone number" [(ngModel)]="contactPhoneNumber" />
+  <br>
+  <input type="text" placeholder="Enter email (optional)" [(ngModel)]="contactEmail" />
+  <br>
+  <button class="btn btn-primary" (click)="addContact()">Add Contact</button>
+</div>
+
+<ul class="contact-list">
+  <li *ngFor="let contact of contactList">
+    <strong>Name:</strong> {{ contact.name }},
+    <strong>Phone Number:</strong> {{ contact.phoneNumber }},
+    <strong>Email:</strong> {{ contact.email || 'N/A' }}
+  </li>
+</ul>

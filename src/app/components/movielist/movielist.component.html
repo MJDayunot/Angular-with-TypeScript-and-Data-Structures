@@ -1,0 +1,17 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter movie title" [(ngModel)]="movieTitle" />
+  <br>
+  <input type="text" placeholder="Enter director" [(ngModel)]="movieDirector" />
+  <br>
+  <input type="number" placeholder="Enter release year" [(ngModel)]="movieReleaseYear" />
+  <br>
+  <button class="btn btn-primary" (click)="addMovie()">Add Movie</button>
+</div>
+
+<ul class="movie-list">
+  <li *ngFor="let movie of movieList">
+    <strong>Title:</strong> {{ movie.title }},
+    <strong>Director:</strong> {{ movie.director }},
+    <strong>Release Year:</strong> {{ movie.releaseYear }}
+  </li>
+</ul>

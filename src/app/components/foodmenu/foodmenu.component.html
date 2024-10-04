@@ -1,0 +1,17 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter food item name" [(ngModel)]="foodName" />
+  <br />
+  <input type="text" class="duration-input" placeholder="Enter food item description" [(ngModel)]="foodDescription" />
+
+  <input type="number" placeholder="Enter food item price" [(ngModel)]="foodPrice" />
+  <br />
+  <button class="btn btn-primary" (click)="addFoodItem()">Add Food Item</button>
+</div>
+
+<ul class="food-list">
+  <li *ngFor="let food of foodList">
+    <strong>Name:</strong> {{ food.name }},
+    <strong>Description:</strong> {{ food.description }},
+    <strong>Price:</strong> ${{ food.price.toFixed(2) }}
+  </li>
+</ul>

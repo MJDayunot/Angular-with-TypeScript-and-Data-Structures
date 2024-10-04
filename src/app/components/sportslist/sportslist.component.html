@@ -1,0 +1,13 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter sport name" [(ngModel)]="sportName" />
+  <input type="text" placeholder="Enter category" [(ngModel)]="sportCategory" />
+
+  <button class="btn btn-primary" (click)="addSport()">Add Sport</button>
+</div>
+
+<ul class="sports-list">
+  <li *ngFor="let sport of sportsList">
+    <strong>Name:</strong> {{ sport.name }},
+    <strong>Category:</strong> {{ sport.category }}
+  </li>
+</ul>

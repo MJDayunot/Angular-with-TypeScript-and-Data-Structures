@@ -1,0 +1,17 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter course title" [(ngModel)]="courseTitle" />
+  <br />
+  <input type="text" placeholder="Enter course code" [(ngModel)]="courseCode" />
+  <br />
+  <input type="number" class="duration-input" placeholder="Enter course duration (hours)" [(ngModel)]="courseDuration" />
+  <br />
+  <button class="btn btn-primary" (click)="addCourse()">Add Course</button>
+
+  <ul class="course-list">
+    <li *ngFor="let course of courseList">
+      <strong>Title:</strong> {{ course.title }},
+      <strong>Code:</strong> {{ course.code }},
+      <strong>Duration:</strong> {{ course.duration }} hours
+    </li>
+  </ul>
+</div>

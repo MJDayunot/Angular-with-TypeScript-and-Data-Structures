@@ -1,0 +1,17 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter lecture topic" [(ngModel)]="lectureTopic" />
+  <br>
+  <input type="date" [(ngModel)]="lectureDate" />
+  <br>
+  <input type="number" placeholder="Enter duration (minutes)" [(ngModel)]="lectureDuration" />
+  <br>
+  <button class="btn btn-primary" (click)="addLecture()">Add Lecture</button>
+</div>
+
+<ul class="lecture-list">
+  <li *ngFor="let lecture of lectureList">
+    <strong>Topic:</strong> {{ lecture.topic }},
+    <strong>Date:</strong> {{ lecture.date | date }},
+    <strong>Duration:</strong> {{ lecture.duration }} minutes
+  </li>
+</ul>

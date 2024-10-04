@@ -1,0 +1,15 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter product name" [(ngModel)]="productName" /><br>
+  <input type="number" placeholder="Enter product price" [(ngModel)]="productPrice" /><br>
+  <input type="number" placeholder="Enter product quantity" [(ngModel)]="productQuantity" /><br>
+
+  <button class="btn btn-primary" (click)="addProduct()">Add Product</button><br>
+
+  <ul class="product-list">
+    <li *ngFor="let product of productList">
+      <strong>Name:</strong> {{ product.name }},
+      <strong>Price:</strong> ${{ product.price }},
+      <strong>Quantity:</strong> {{ product.quantity }}
+    </li>
+  </ul>
+</div>

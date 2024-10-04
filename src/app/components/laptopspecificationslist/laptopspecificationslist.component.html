@@ -1,0 +1,23 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter laptop model" [(ngModel)]="laptopModel" />
+  <br>
+  <input type="text" placeholder="Enter processor" [(ngModel)]="laptopProcessor" />
+  <br>
+  <input type="text" placeholder="Enter RAM size" [(ngModel)]="laptopRam" />
+  <br>
+  <input type="text" placeholder="Enter storage capacity" [(ngModel)]="laptopStorage" />
+  <br>
+  <input type="text" placeholder="Enter display size" [(ngModel)]="laptopDisplay" />
+  <br>
+  <button class="btn btn-primary" (click)="addSpecification()">Add Specification</button>
+</div>
+
+<ul class="laptop-specifications-list">
+  <li *ngFor="let spec of laptopSpecificationsList">
+    <strong>Model:</strong> {{ spec.model }},
+    <strong>Processor:</strong> {{ spec.processor }},
+    <strong>RAM:</strong> {{ spec.ram }},
+    <strong>Storage:</strong> {{ spec.storage }},
+    <strong>Display:</strong> {{ spec.display }}
+  </li>
+</ul>

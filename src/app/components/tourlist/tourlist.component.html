@@ -1,0 +1,12 @@
+<div class="centered-container">
+  <input type="date" [(ngModel)]="tourDate" />
+  <input type="text" placeholder="Enter tour location" [(ngModel)]="tourLocation" />
+  <button class="btn btn-primary" (click)="addTour()">Add Tour</button>
+</div>
+
+<ul class="tour-list">
+  <li *ngFor="let tour of tourList">
+    <strong>Date:</strong> {{ tour.date | date }},
+    <strong>Location:</strong> {{ tour.location }}
+  </li>
+</ul>

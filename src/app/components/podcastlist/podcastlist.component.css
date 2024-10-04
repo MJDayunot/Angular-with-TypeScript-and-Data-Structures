@@ -1,0 +1,26 @@
+.centered-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.podcast-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.podcast-list li {
+  margin: 5px 0;
+}
+
+.duration-input {
+  width: 250px; /* Palitan ang sukat ayon sa nais mo */
+  padding: 5px; /* Para sa mas magandang padding */
+  margin-bottom: 20px; /* Magdagdag ng margin sa ilalim */
+}

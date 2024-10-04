@@ -1,0 +1,15 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter language name" [(ngModel)]="languageName" />
+  <br />
+  <input type="number" placeholder="Enter year of creation" [(ngModel)]="languageYear" />
+  <br />
+
+  <button class="btn btn-primary" (click)="addLanguage()">Add Language</button>
+</div>
+
+<ul class="language-list">
+  <li *ngFor="let language of languageList">
+    <strong>Name:</strong> {{ language.name }},
+    <strong>Year:</strong> {{ language.year }}
+  </li>
+</ul>

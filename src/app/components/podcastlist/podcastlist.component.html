@@ -1,0 +1,12 @@
+
+<div class="centered-container">
+  <input type="text" class="duration-input" placeholder="Enter podcast episode title" [(ngModel)]="episodeTitle" />
+  <br>
+  <button class="btn btn-primary" (click)="addEpisode()">Add Episode</button>
+</div>
+
+<ul class="podcast-list">
+  <li *ngFor="let episode of podcastList">
+    {{ episode }}
+  </li>
+</ul>

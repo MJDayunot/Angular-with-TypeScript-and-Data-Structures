@@ -1,0 +1,15 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter item name" [(ngModel)]="itemName" />
+  <input type="number" placeholder="Enter item quantity" [(ngModel)]="itemQuantity" />
+  <input type="number" placeholder="Enter item price" [(ngModel)]="itemPrice" step="0.01" />
+
+  <button class="btn btn-primary" (click)="addStationeryItem()">Add Stationery Item</button>
+</div>
+
+<ul class="stationery-list">
+  <li *ngFor="let item of stationeryList">
+    <strong>Name:</strong> {{ item.name }},
+    <strong>Quantity:</strong> {{ item.quantity }},
+    <strong>Price:</strong> ${{ item.price.toFixed(2) }}
+  </li>
+</ul>

@@ -1,0 +1,17 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter employee name" [(ngModel)]="employeeName" />
+  <br />
+  <input type="number" placeholder="Enter employee age" [(ngModel)]="employeeAge" />
+  <br />
+  <input type="text" placeholder="Enter employee position" [(ngModel)]="employeePosition" />
+  <br />
+  <button class="btn btn-primary" (click)="addEmployee()">Add Employee</button>
+
+  <ul class="employee-list">
+    <li *ngFor="let employee of employeeList">
+      <strong>Name:</strong> {{ employee.name }},
+      <strong>Age:</strong> {{ employee.age }},
+      <strong>Position:</strong> {{ employee.position }}
+    </li>
+  </ul>
+</div>

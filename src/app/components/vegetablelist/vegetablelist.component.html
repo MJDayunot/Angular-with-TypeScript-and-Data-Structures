@@ -1,0 +1,14 @@
+
+<div class="centered-container">
+  <input type="text" placeholder="Enter vegetable name" [(ngModel)]="vegetableName" />
+  <input type="number" placeholder="Enter vegetable price" [(ngModel)]="vegetablePrice" />
+
+  <button class="btn btn-primary" (click)="addVegetable()">Add Vegetable</button>
+</div>
+
+<ul class="vegetable-list">
+  <li *ngFor="let vegetable of vegetableList">
+    <strong>Name:</strong> {{ vegetable.name }},
+    <strong>Price:</strong> ${{ vegetable.price.toFixed(2) }}  <!-- Format price to 2 decimal places -->
+  </li>
+</ul>

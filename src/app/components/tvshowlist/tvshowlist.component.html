@@ -1,0 +1,10 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter TV show title" [(ngModel)]="showTitle" />
+  <button class="btn btn-primary" (click)="addShow()">Add TV Show</button>
+</div>
+
+<ul class="show-list">
+  <li *ngFor="let show of showList">
+    {{ show }}
+  </li>
+</ul>

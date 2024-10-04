@@ -1,0 +1,18 @@
+
+<div class="centered-container">
+  <input type="text" placeholder="Enter song title" [(ngModel)]="songTitle" />
+  <br>
+  <input type="text" placeholder="Enter artist name" [(ngModel)]="songArtist" />
+  <br>
+  <input type="text" placeholder="Enter duration (e.g., 3:45)" [(ngModel)]="songDuration" />
+  <br>
+  <button class="btn btn-primary" (click)="addSong()">Add Song</button>
+</div>
+
+<ul class="song-list">
+  <li *ngFor="let song of songList">
+    <strong>Title:</strong> {{ song.title }},
+    <strong>Artist:</strong> {{ song.artist }},
+    <strong>Duration:</strong> {{ song.duration }}
+  </li>
+</ul>

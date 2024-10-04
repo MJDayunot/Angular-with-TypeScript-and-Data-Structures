@@ -1,0 +1,18 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter item name" [(ngModel)]="itemName" />
+  <br />
+  <input type="number" placeholder="Enter item quantity" [(ngModel)]="itemQuantity" />
+  <br />
+  <input type="number" placeholder="Enter item price" [(ngModel)]="itemPrice" step="0.01" />
+  <br />
+
+  <button class="btn btn-primary" (click)="addInventoryItem()">Add Inventory Item</button>
+</div>
+
+<ul class="inventory-list">
+  <li *ngFor="let item of inventoryList">
+    <strong>Name:</strong> {{ item.name }},
+    <strong>Quantity:</strong> {{ item.quantity }},
+    <strong>Price:</strong> ${{ item.price.toFixed(2) }}
+  </li>
+</ul>

@@ -1,0 +1,14 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter tool name" [(ngModel)]="toolName" />
+  <br />
+  <input type="text" placeholder="Enter tool description" [(ngModel)]="toolDescription" />
+  <br />
+  <button class="btn btn-primary" (click)="addTool()">Add Tool</button>
+
+  <ul class="developer-tools-list">
+    <li *ngFor="let tool of developerToolsList">
+      <strong>Tool:</strong> {{ tool.name }},
+      <strong>Description:</strong> {{ tool.description }}
+    </li>
+  </ul>
+</div>

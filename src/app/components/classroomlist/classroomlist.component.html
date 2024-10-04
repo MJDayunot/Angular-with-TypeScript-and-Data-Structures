@@ -1,0 +1,14 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter student name" [(ngModel)]="studentName" />
+  <br />
+  <input type="text" placeholder="Enter room number" [(ngModel)]="roomNumber" />
+  <br />
+  <button class="btn btn-primary" (click)="addStudent()">Add Student</button>
+
+  <ul class="student-list">
+    <li *ngFor="let student of studentList">
+      <strong>Name:</strong> {{ student.name }},
+      <strong>Room Number:</strong> {{ student.roomNumber }}
+    </li>
+  </ul>
+</div>

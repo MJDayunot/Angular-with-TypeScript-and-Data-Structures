@@ -1,0 +1,11 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter accessory name" [(ngModel)]="accessoryName" />
+  <br>
+  <button class="btn btn-primary" (click)="addAccessory()">Add Accessory</button>
+</div>
+
+<ul class="accessory-list">
+  <li *ngFor="let accessory of accessoryList">
+    {{ accessory }}
+  </li>
+</ul>

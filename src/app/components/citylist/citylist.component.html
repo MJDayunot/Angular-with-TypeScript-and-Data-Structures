@@ -1,0 +1,17 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter city name" [(ngModel)]="cityName" />
+  <br>
+  <input type="text" placeholder="Enter country" [(ngModel)]="cityCountry" />
+  <br>
+  <input type="number" placeholder="Enter population" [(ngModel)]="cityPopulation" />
+  <br>
+  <button class="btn btn-primary" (click)="addCity()">Add City</button>
+</div>
+
+<ul class="city-list">
+  <li *ngFor="let city of cityList">
+    <strong>Name:</strong> {{ city.name }},
+    <strong>Country:</strong> {{ city.country }},
+    <strong>Population:</strong> {{ city.population }}
+  </li>
+</ul>

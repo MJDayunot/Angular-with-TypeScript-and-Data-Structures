@@ -1,0 +1,14 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter animal name" [(ngModel)]="animalName" />
+  <br>
+  <input type="text" placeholder="Enter animal species" [(ngModel)]="animalSpecies" />
+  <br>
+  <button class="btn btn-primary" (click)="addAnimal()">Add Animal</button>
+</div>
+
+<ul class="animal-list">
+  <li *ngFor="let animal of animalList">
+    <strong>Name:</strong> {{ animal.name }},
+    <strong>Species:</strong> {{ animal.species }}
+  </li>
+</ul>

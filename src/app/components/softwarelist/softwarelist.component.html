@@ -1,0 +1,15 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter software name" [(ngModel)]="softwareName" />
+  <input type="text" placeholder="Enter software version" [(ngModel)]="softwareVersion" />
+  <input type="number" placeholder="Enter installed year" [(ngModel)]="softwareInstalledYear" />
+
+  <button class="btn btn-primary" (click)="addSoftware()">Add Software</button>
+</div>
+
+<ul class="software-list">
+  <li *ngFor="let software of softwareList">
+    <strong>Name:</strong> {{ software.name }},
+    <strong>Version:</strong> {{ software.version }},
+    <strong>Installed Year:</strong> {{ software.installedYear }}
+  </li>
+</ul>

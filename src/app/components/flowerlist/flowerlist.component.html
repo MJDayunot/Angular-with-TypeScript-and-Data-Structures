@@ -1,0 +1,17 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter flower name" [(ngModel)]="flowerName" />
+  <br />
+  <input type="text" placeholder="Enter flower color" [(ngModel)]="flowerColor" />
+  <br />
+  <input type="number" placeholder="Enter flower quantity" [(ngModel)]="flowerQuantity" />
+  <br />
+  <button class="btn btn-primary" (click)="addFlower()">Add Flower</button>
+
+  <ul class="flower-list">
+    <li *ngFor="let flower of flowerList">
+      <strong>Name:</strong> {{ flower.name }},
+      <strong>Color:</strong> {{ flower.color }},
+      <strong>Quantity:</strong> {{ flower.quantity }}
+    </li>
+  </ul>
+</div>

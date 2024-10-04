@@ -1,0 +1,11 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter exercise name" [(ngModel)]="exerciseName" />
+  <br />
+  <button class="btn btn-primary" (click)="addExercise()">Add Exercise</button>
+
+  <ul class="exercise-list">
+    <li *ngFor="let exercise of exerciseList">
+      {{ exercise }}
+    </li>
+  </ul>
+</div>

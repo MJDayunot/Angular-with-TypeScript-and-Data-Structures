@@ -1,0 +1,16 @@
+
+<div class="centered-container">
+  <input type="text" placeholder="Enter subject name" [(ngModel)]="subjectName" />
+  <input type="text" placeholder="Enter subject code" [(ngModel)]="subjectCode" />
+  <input type="number" placeholder="Enter subject credits" [(ngModel)]="subjectCredits" />
+
+  <button class="btn btn-primary" (click)="addSubject()">Add Subject</button>
+</div>
+
+<ul class="subject-list">
+  <li *ngFor="let subject of subjectList">
+    <strong>Name:</strong> {{ subject.name }},
+    <strong>Code:</strong> {{ subject.code }},
+    <strong>Credits:</strong> {{ subject.credits }}
+  </li>
+</ul>

@@ -1,0 +1,14 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter library name" [(ngModel)]="libraryName" />
+  <br>
+  <input type="text" placeholder="Enter library version" [(ngModel)]="libraryVersion" />
+  <br>
+  <button class="btn btn-primary" (click)="addLibrary()">Add Library</button>
+</div>
+
+<ul class="library-list">
+  <li *ngFor="let library of libraryList">
+    <strong>Library:</strong> {{ library.name }},
+    <strong>Version:</strong> {{ library.version }}
+  </li>
+</ul>

@@ -1,0 +1,15 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter student name" [(ngModel)]="studentName" />
+  <input type="number" placeholder="Enter student age" [(ngModel)]="studentAge" />
+  <input type="text" placeholder="Enter student grade" [(ngModel)]="studentGrade" />
+
+  <button class="btn btn-primary" (click)="addStudent()">Add Student</button>
+</div>
+
+<ul class="student-list">
+  <li *ngFor="let student of studentList">
+    <strong>Name:</strong> {{ student.name }},
+    <strong>Age:</strong> {{ student.age }},
+    <strong>Grade:</strong> {{ student.grade }}
+  </li>
+</ul>

@@ -1,0 +1,11 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter composer name" [(ngModel)]="composerName" />
+  <br />
+  <button class="btn btn-primary" (click)="addComposer()">Add Composer</button>
+
+  <ul class="composer-list">
+    <li *ngFor="let composer of composerList">
+      {{ composer }}
+    </li>
+  </ul>
+</div>

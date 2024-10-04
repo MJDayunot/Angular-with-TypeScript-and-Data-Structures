@@ -1,0 +1,8 @@
+.spaced-btn {
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.spaced-btn:last-child {
+  margin-right: 0;
+}

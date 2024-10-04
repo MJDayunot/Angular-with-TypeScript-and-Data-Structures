@@ -1,0 +1,11 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter app name" [(ngModel)]="appName" />
+  <br>
+  <button class="btn btn-primary" (click)="addApp()">Add App</button>
+</div>
+
+<ul class="app-list">
+  <li *ngFor="let app of appList">
+    {{ app }}
+  </li>
+</ul>

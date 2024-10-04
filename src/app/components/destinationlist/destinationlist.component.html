@@ -1,0 +1,17 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter destination name" [(ngModel)]="destinationName" />
+  <br />
+  <input type="text" placeholder="Enter country" [(ngModel)]="destinationCountry" />
+  <br />
+  <input type="text" placeholder="Enter main attractions" [(ngModel)]="destinationAttractions" />
+  <br />
+  <button class="btn btn-primary" (click)="addDestination()">Add Destination</button>
+
+  <ul class="destination-list">
+    <li *ngFor="let destination of destinationList">
+      <strong>Name:</strong> {{ destination.name }},
+      <strong>Country:</strong> {{ destination.country }},
+      <strong>Attractions:</strong> {{ destination.attractions }}
+    </li>
+  </ul>
+</div>

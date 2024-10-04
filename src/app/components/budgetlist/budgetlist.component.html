@@ -1,0 +1,13 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter budget item name" [(ngModel)]="itemName" />
+  <br>
+  <input type="number" class="duration-input" placeholder="Enter budget item amount" [(ngModel)]="itemAmount" />
+  <br>
+  <button class="btn btn-primary" (click)="addBudgetItem()">Add Budget Item</button>
+</div>
+
+<ul class="budget-list">
+  <li *ngFor="let item of budgetList">
+    <strong>{{ item.name }}:</strong> ${{ item.amount }}
+  </li>
+</ul>

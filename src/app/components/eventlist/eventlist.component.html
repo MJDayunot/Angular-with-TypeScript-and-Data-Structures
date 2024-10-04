@@ -1,0 +1,17 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter event name" [(ngModel)]="eventName" />
+  <br />
+  <input type="date" [(ngModel)]="eventDate" />
+  <br />
+  <input type="text" placeholder="Enter event location" [(ngModel)]="eventLocation" />
+  <br />
+  <button class="btn btn-primary" (click)="addEvent()">Add Event</button>
+
+  <ul class="event-list">
+    <li *ngFor="let event of eventList">
+      <strong>Event:</strong> {{ event.name }},
+      <strong>Date:</strong> {{ event.date | date: 'mediumDate' }},
+      <strong>Location:</strong> {{ event.location }}
+    </li>
+  </ul>
+</div>

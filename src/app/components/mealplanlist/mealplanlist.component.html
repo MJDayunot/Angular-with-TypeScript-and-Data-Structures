@@ -1,0 +1,10 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter meal name" [(ngModel)]="mealName" /><br>
+  <button class="btn btn-primary" (click)="addMeal()">Add Meal</button>
+</div>
+
+<ul class="meal-plan-list">
+  <li *ngFor="let meal of mealPlan">
+    {{ meal }}
+  </li>
+</ul>

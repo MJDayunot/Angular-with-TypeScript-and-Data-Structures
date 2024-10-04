@@ -1,0 +1,14 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter framework name" [(ngModel)]="frameworkName" />
+  <br />
+  <input type="text" class="duration-input" placeholder="Enter framework description" [(ngModel)]="frameworkDescription" />
+  <br />
+  <button class="btn btn-primary" (click)="addFramework()">Add Framework</button>
+</div>
+
+<ul class="framework-list">
+  <li *ngFor="let framework of frameworkList">
+    <strong>Framework:</strong> {{ framework.name }},
+    <strong>Description:</strong> {{ framework.description }}
+  </li>
+</ul>

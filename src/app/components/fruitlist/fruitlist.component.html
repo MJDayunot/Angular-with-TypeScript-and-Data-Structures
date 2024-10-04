@@ -1,0 +1,17 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter fruit name" [(ngModel)]="fruitName" />
+  <br />
+  <input type="text" placeholder="Enter fruit color" [(ngModel)]="fruitColor" />
+  <br />
+  <input type="number" placeholder="Enter price per kg" [(ngModel)]="fruitPricePerKg" />
+  <br />
+  <button class="btn btn-primary" (click)="addFruit()">Add Fruit</button>
+</div>
+
+<ul class="fruit-list">
+  <li *ngFor="let fruit of fruitList">
+    <strong>Name:</strong> {{ fruit.name }},
+    <strong>Color:</strong> {{ fruit.color }},
+    <strong>Price per Kg:</strong> {{ fruit.pricePerKg }} PHP
+  </li>
+</ul>

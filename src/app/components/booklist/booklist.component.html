@@ -1,0 +1,17 @@
+<div class="centered-container">
+  <input type="text" placeholder="Enter book title" [(ngModel)]="bookTitle" />
+  <br>
+  <input type="text" placeholder="Enter book author" [(ngModel)]="bookAuthor" />
+  <br>
+  <input type="number" placeholder="Enter publication year" [(ngModel)]="bookYear" />
+  <br>
+  <button class="btn btn-primary" (click)="addBook()">Add Book</button>
+</div>
+
+<ul class="book-list">
+  <li *ngFor="let book of bookList">
+    <strong>Title:</strong> {{ book.title }},
+    <strong>Author:</strong> {{ book.author }},
+    <strong>Year:</strong> {{ book.year }}
+  </li>
+</ul>
