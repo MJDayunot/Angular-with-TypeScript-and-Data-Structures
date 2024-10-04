@@ -6,15 +6,15 @@
 }
 
 .product-list {
-  list-style-type: none; /* Remove default list styling */
-  padding: 0;           /* Remove default padding */
-  margin-top: 20px;    /* Space above the list */
-  width: 100%;          /* Full width for the list */
-  display: flex;        /* Use flexbox to center the items */
-  flex-direction: column; /* Stack list items vertically */
-  align-items: center;  /* Center the list items horizontally */
+  list-style-type: none; 
+  padding: 0;           
+  margin-top: 20px;    
+  width: 100%;          
+  display: flex;        
+  flex-direction: column; 
+  align-items: center;  
 }
 
 .product-list li {
-  margin: 5px 0;       /* Space between list items */
+  margin: 5px 0;       
 }
