@@ -1,22 +1,22 @@
-import { Component } from '@angular/core';  // Import Component
+import { Component } from '@angular/core';  
 
-// Define an interface for the Contact structure
+
 interface Contact {
-  name: string;  // Name of the contact
-  phoneNumber: string;  // Phone number of the contact
-  email?: string;  // Optional email of the contact
+  name: string; 
+  phoneNumber: string;  
+  email?: string;  
 }
 
 @Component({
-  selector: 'app-phone-contact-list',  // Ensure this matches your HTML tag
-  templateUrl: './phonecontactlist.component.html',  // Path to the HTML file
-  styleUrls: ['./phonecontactlist.component.css']  // Path to the CSS file
+  selector: 'app-phone-contact-list',  
+  templateUrl: './phonecontactlist.component.html',  
+  styleUrls: ['./phonecontactlist.component.css']  
 })
 export class PhoneContactListComponent {
   // Declare properties for contact details
-  contactName: string = '';      // Variable to hold the contact name input
-  contactPhoneNumber: string = ''; // Variable to hold the contact phone number input
-  contactEmail: string = '';      // Variable to hold the contact email input
+  contactName: string = '';      
+  contactPhoneNumber: string = ''; 
+  contactEmail: string = '';     
 
   // Array to hold the list of contacts
   contactList: Contact[] = [
@@ -30,10 +30,10 @@ export class PhoneContactListComponent {
       const newContact: Contact = {
         name: this.contactName,
         phoneNumber: this.contactPhoneNumber,
-        email: this.contactEmail || undefined  // Set email only if provided
+        email: this.contactEmail || undefined  
       };
-      this.contactList.push(newContact);  // Add the new contact to the list
-      this.clearInputs();  // Clear the input fields after adding the contact
+      this.contactList.push(newContact);  
+      this.clearInputs();  
     }
   }
 
