@@ -1,20 +1,20 @@
 .centered-container {
-  display: flex;               /* Use flexbox for alignment */
-  flex-direction: column;      /* Stack items vertically */
-  align-items: center;         /* Center items horizontally */
-  margin: 20px;               /* Optional: add some margin */
+  display: flex;               
+  flex-direction: column;     
+  align-items: center;         
+  margin: 20px;               
 }
 
 .laptop-specifications-list {
-  list-style-type: none;       /* Remove default list styling */
-  padding: 0;                  /* Remove default padding */
-  margin-top: 20px;            /* Add space above the list */
-  width: 100%;                 /* Full width for the list */
-  display: flex;               /* Use flexbox to center the items */
-  flex-direction: column;      /* Stack list items vertically */
-  align-items: center;         /* Center the list items horizontally */
+  list-style-type: none;       
+  padding: 0;                  
+  margin-top: 20px;           
+  width: 100%;                 
+  display: flex;               
+  flex-direction: column;     
+  align-items: center;         
 }
 
 .laptop-specifications-list li {
-  margin: 5px 0;              /* Add space between list items */
+  margin: 5px 0;              
 }
