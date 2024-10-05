@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-library-list',  // Ensure this matches your HTML tag
-  templateUrl: './librarylist.component.html',  // Path to the HTML file
-  styleUrls: ['./librarylist.component.css']  // Path to the CSS file
+  selector: 'app-library-list', 
+  templateUrl: './librarylist.component.html',  
+  styleUrls: ['./librarylist.component.css']  
 })
 export class LibraryListComponent {
-  libraryName: string = '';  // Variable to hold the library name input
-  libraryVersion: string = '';  // Variable to hold the library version input
+  libraryName: string = '';  
+  libraryVersion: string = '';  
 
   // Array to hold the list of libraries
   libraryList: { name: string; version: string }[] = [
@@ -17,8 +17,8 @@ export class LibraryListComponent {
   // Method to add a new library to the list
   addLibrary() {
     if (this.libraryName && this.libraryVersion) {
-      this.libraryList.push({ name: this.libraryName, version: this.libraryVersion });  // Add the new library to the list
-      this.clearInput();  // Clear the input fields after adding the library
+      this.libraryList.push({ name: this.libraryName, version: this.libraryVersion });  
+      this.clearInput();  
     }
   }
 
