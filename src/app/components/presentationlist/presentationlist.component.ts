@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-presentation-list',  // Ensure this matches your HTML tag
-  templateUrl: './presentationlist.component.html',  // Path to the HTML file
+  selector: 'app-presentation-list',  
+  templateUrl: './presentationlist.component.html',  
   styleUrls: ['./presentationlist.component.css']  // Path to the CSS file
 })
 export class PresentationListComponent {
