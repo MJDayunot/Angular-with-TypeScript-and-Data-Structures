@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MobileapplistComponent } from './mobileapplist.component';
+import { MobileAppListComponent } from './mobileapplist.component';
 
 describe('MobileapplistComponent', () => {
-  let component: MobileapplistComponent;
-  let fixture: ComponentFixture<MobileapplistComponent>;
+  let component: MobileAppListComponent;
+  let fixture: ComponentFixture<MobileAppListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MobileapplistComponent]
+      imports: [MobileAppListComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MobileapplistComponent);
+    fixture = TestBed.createComponent(MobileAppListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
