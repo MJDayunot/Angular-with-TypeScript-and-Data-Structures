@@ -8,7 +8,7 @@ export class PresentationService {
     'The Impact of Climate Change',
   ];
 
-  // Method to get the list of presentation topics
+  
   getPresentationList(): string[] {
     return this.presentationList;
   }
