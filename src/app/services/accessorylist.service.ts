@@ -8,7 +8,7 @@ export class AccessoryService {
     'Phone Case',
   ];
 
-  // Method to get the list of accessories
+ 
   getAccessoryList(): string[] {
     return this.accessoryList;
   }
