@@ -8,7 +8,7 @@ export class ComposerService {
     'Ludwig van Beethoven',
   ];
 
-  // Method to get the list of composers
+ 
   getComposerList(): string[] {
     return this.composerList;
   }
