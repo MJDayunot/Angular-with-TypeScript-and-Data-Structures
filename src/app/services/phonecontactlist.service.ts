@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
 export interface Contact {
-  name: string;           // Name of the contact
-  phoneNumber: string;    // Phone number of the contact
-  email?: string;         // Optional email of the contact
+  name: string;           
+  phoneNumber: string;    
+  email?: string;         
 }
 
 @Injectable({
