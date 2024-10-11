@@ -1,10 +1,9 @@
-// software.service.ts
 import { Injectable } from '@angular/core';
 
 export interface Software {
-  name: string;              // Name of the software
-  version: string;           // Version of the software
-  installedYear: number;     // Year the software was installed
+  name: string;             
+  version: string;           
+  installedYear: number;     
 }
 
 @Injectable({
