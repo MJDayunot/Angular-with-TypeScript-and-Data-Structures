@@ -13,7 +13,7 @@ export class TvShowService {
     return this.showList;
   }
 
-  // Method to add a new TV show to the list
+  
   addShow(show: string) {
     this.showList.push(show);
   }
