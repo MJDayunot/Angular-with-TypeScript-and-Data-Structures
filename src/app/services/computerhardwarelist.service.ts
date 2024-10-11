@@ -8,7 +8,7 @@ export class ComputerHardwareService {
     'CPU',
   ];
 
-  // Method to get the list of hardware components
+  
   getHardwareList(): string[] {
     return this.hardwareList;
   }
