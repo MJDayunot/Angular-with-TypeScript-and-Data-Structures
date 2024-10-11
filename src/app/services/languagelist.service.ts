@@ -1,9 +1,8 @@
-// language.service.ts
 import { Injectable } from '@angular/core';
 
 export interface Language {
-  name: string;  // Name of the programming language
-  year: number;  // Year of creation or release
+  name: string;  
+  year: number;  
 }
 
 @Injectable({
