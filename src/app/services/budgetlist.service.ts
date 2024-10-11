@@ -13,7 +13,7 @@ export class BudgetService {
     { name: 'Office Supplies', amount: 150 },
   ];
 
-  // Method to get the list of budget items
+  
   getBudgetList(): BudgetItem[] {
     return this.budgetList;
   }
