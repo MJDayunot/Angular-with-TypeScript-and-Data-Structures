@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 
 // Define an interface for the Subject structure
 export interface Subject {
-  name: string;      // Name of the subject
-  code: string;      // Subject code (e.g., MATH101)
-  credits: number;   // Number of credits for the subject
+  name: string;      
+  code: string;      
+  credits: number;   
 }
 
 @Injectable({
-  providedIn: 'root'  // This makes the service available throughout the application
+  providedIn: 'root'  
 })
 export class SubjectService {
   private subjectList: Subject[] = [
