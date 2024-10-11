@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core';
 interface City {
   name: string;
   country: string;
-  population: number;  // Population of the city
+  population: number;  
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class CitylistService {
-  // List of cities
+  
   private cityList: City[] = [
     { name: 'New York', country: 'USA', population: 8419600 }
   ];
