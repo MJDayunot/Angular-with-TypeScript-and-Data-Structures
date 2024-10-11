@@ -1,4 +1,3 @@
-// mobile-app.service.ts
 import { Injectable } from '@angular/core';
 
 @Injectable({
