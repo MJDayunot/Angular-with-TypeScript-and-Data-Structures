@@ -1,4 +1,3 @@
-// laptop-specifications.service.ts
 import { Injectable } from '@angular/core';
 
 // Define the interface for laptop specifications
