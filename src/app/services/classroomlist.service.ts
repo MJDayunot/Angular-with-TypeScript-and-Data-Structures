@@ -1,9 +1,8 @@
-// classroom.service.ts
 import { Injectable } from '@angular/core';
 
 export interface Student {
-  name: string;      // Name of the student
-  roomNumber: string; // Room number assigned to the student
+  name: string;      
+  roomNumber: string; 
 }
 
 @Injectable({
