@@ -8,7 +8,7 @@ export class ExerciseService {
     'Push-ups',
   ];
 
-  // Method to get the list of exercises
+  
   getExerciseList(): string[] {
     return this.exerciseList;
   }
