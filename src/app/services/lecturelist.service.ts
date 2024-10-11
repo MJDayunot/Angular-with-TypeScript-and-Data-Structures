@@ -1,10 +1,9 @@
-// lecture.service.ts
 import { Injectable } from '@angular/core';
 
 export interface Lecture {
-  topic: string;       // Topic of the lecture
-  date: string;        // Date of the lecture
-  duration: number;    // Duration of the lecture in minutes
+  topic: string;       
+  date: string;       
+  duration: number;   
 }
 
 @Injectable({
