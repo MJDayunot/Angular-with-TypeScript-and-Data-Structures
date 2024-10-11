@@ -2,9 +2,9 @@
 import { Injectable } from '@angular/core';
 
 export interface FoodItem {
-  name: string;           // Name of the food item
-  description: string;    // Description of the food item
-  price: number;          // Price of the food item
+  name: string;           
+  description: string;    
+  price: number;          
 }
 
 @Injectable({
