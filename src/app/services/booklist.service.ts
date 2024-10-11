@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core';
 interface Book {
   title: string;
   author: string;
-  year: number;  // Publication year
+  year: number;  
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class BooklistService {
-  // List of books
+  
   private bookList: Book[] = [
     { title: 'To Kill a Mockingbird', author: 'Harper Lee', year: 1960 }
   ];
