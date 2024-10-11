@@ -8,7 +8,7 @@ export class ArtistService {
     'Leonardo da Vinci',
   ];
 
-  // Method to get the list of artists
+  
   getArtistList(): string[] {
     return this.artistList;
   }
