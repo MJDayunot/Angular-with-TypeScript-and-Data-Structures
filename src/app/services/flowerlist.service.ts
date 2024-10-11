@@ -1,10 +1,9 @@
-// flower.service.ts
 import { Injectable } from '@angular/core';
 
 export interface Flower {
-  name: string;        // Name of the flower
-  color: string;       // Color of the flower
-  quantity: number;    // Quantity of the flower
+  name: string;        
+  color: string;       
+  quantity: number;    
 }
 
 @Injectable({
