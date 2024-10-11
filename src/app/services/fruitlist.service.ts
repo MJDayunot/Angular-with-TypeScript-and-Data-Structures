@@ -10,7 +10,7 @@ interface Fruit {
   providedIn: 'root',
 })
 export class FruitlistService {
-  // List of fruits
+  
   private fruitList: Fruit[] = [
     { name: 'Apple', color: 'Red', pricePerKg: 100 }
   ];
