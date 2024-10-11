@@ -8,7 +8,7 @@ export class PodcastService {
     'Episode 1: The Power of Mindfulness',
   ];
 
-  // Method to get the list of podcast episodes
+  
   getPodcastList(): string[] {
     return this.podcastList;
   }
