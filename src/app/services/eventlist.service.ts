@@ -14,7 +14,7 @@ export class EventService {
     { name: 'Music Festival', date: '2024-11-05', location: 'Central Park' },
   ];
 
-  // Method to get the list of events
+  
   getEventList(): Event[] {
     return this.eventList;
   }
