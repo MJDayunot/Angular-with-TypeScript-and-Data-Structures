@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core';
 interface Course {
   title: string;
   code: string;
-  duration: number;  // Duration in hours
+  duration: number;  
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class CourselistService {
-  // List of courses
+  
   private courseList: Course[] = [
     { title: 'Mathematics', code: 'MATH101', duration: 40 }
   ];
