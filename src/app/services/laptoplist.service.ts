@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class LaptopService {
   private laptopList: string[] = [
-    'MacBook Pro',  // Initial laptop model
+    'MacBook Pro',  
   ];
 
   // Method to get the list of laptops
