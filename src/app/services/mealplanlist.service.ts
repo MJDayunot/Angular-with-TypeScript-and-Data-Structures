@@ -1,4 +1,3 @@
-// meal-plan.service.ts
 import { Injectable } from '@angular/core';
 
 @Injectable({
