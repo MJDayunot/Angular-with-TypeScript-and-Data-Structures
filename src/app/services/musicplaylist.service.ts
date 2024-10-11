@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
 export interface Song {
-  title: string;   // Title of the song
-  artist: string;  // Artist of the song
-  duration: string; // Duration of the song (e.g., "3:45")
+  title: string;   
+  artist: string;  
+  duration: string; 
 }
 
 @Injectable({
