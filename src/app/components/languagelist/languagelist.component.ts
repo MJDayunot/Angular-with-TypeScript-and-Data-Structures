@@ -1,26 +1,20 @@
-import { Component } from '@angular/core';  // Import Component
-
-// Define an interface for the Language structure
-interface Language {
-  name: string;  // Name of the programming language
-  year: number;  // Year of creation or release
-}
+import { Component } from '@angular/core';
+import { Language, LanguageService } from '../../services/languagelist.service'; // Correct import path
 
 @Component({
-  selector: 'app-language-list',  // Ensure this matches your HTML tag
-  templateUrl: './languagelist.component.html',  // Path to the HTML file
-  styleUrls: ['./languagelist.component.css']  // Path to the CSS file
+  selector: 'app-language-list',
+  templateUrl: './languagelist.component.html',
+  styleUrls: ['./languagelist.component.css']
 })
 export class LanguageListComponent {
-  // Declare properties for language details
-  languageName: string = '';      // Variable to hold the language name input
-  languageYear: number | null = null;  // Variable to hold the year input (nullable)
+  languageName: string = '';          // Variable to hold the language name input
+  languageYear: number | null = null; // Variable to hold the year input
 
-  // Array to hold the list of programming languages
-  languageList: Language[] = [
-    { name: 'JavaScript', year: 1995 },
+  languageList: Language[] = [];      // Initialize the language list
 
-  ];
+  constructor(private languageService: LanguageService) {
+    this.languageList = this.languageService.getLanguages(); // Fetch languages from the service
+  }
 
   // Method to add a new programming language to the list
   addLanguage() {
@@ -29,8 +23,8 @@ export class LanguageListComponent {
         name: this.languageName,
         year: this.languageYear
       };
-      this.languageList.push(newLanguage);  // Add the new language to the list
-      this.clearInputs();  // Clear the input fields after adding the language
+      this.languageService.addLanguage(newLanguage); // Use the service to add the language
+      this.clearInputs(); // Clear input fields
     }
   }
 

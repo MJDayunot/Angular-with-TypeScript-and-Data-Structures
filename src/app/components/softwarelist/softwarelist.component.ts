@@ -1,28 +1,21 @@
-import { Component } from '@angular/core';  // Import Component
-
-// Define an interface for the Software structure
-interface Software {
-  name: string;  // Name of the software
-  version: string;  // Version of the software
-  installedYear: number;  // Year the software was installed
-}
+import { Component } from '@angular/core';
+import { Software, SoftwareService } from '../../services/softwarelist.service'; // Correct import path
 
 @Component({
-  selector: 'app-software-list',  // Ensure this matches your HTML tag
-  templateUrl: './softwarelist.component.html',  // Path to the HTML file
-  styleUrls: ['./softwarelist.component.css']  // Path to the CSS file
+  selector: 'app-software-list',
+  templateUrl: './softwarelist.component.html',
+  styleUrls: ['./softwarelist.component.css']
 })
 export class SoftwareListComponent {
-  // Declare properties for software details
-  softwareName: string = '';      // Variable to hold the software name input
-  softwareVersion: string = '';    // Variable to hold the software version input
+  softwareName: string = '';                   // Variable to hold the software name input
+  softwareVersion: string = '';                 // Variable to hold the software version input
   softwareInstalledYear: number | null = null;  // Variable to hold the installed year input (nullable)
 
-  // Array to hold the list of software installed
-  softwareList: Software[] = [
-    { name: 'Visual Studio Code', version: '1.66.0', installedYear: 2021 },
+  softwareList: Software[] = [];                // Initialize the software list
 
-  ];
+  constructor(private softwareService: SoftwareService) {
+    this.softwareList = this.softwareService.getSoftware(); // Fetch software from the service
+  }
 
   // Method to add new software to the list
   addSoftware() {
@@ -32,7 +25,7 @@ export class SoftwareListComponent {
         version: this.softwareVersion,
         installedYear: this.softwareInstalledYear
       };
-      this.softwareList.push(newSoftware);  // Add the new software to the list
+      this.softwareService.addSoftware(newSoftware); // Use the service to add the software
       this.clearInputs();  // Clear the input fields after adding the software
     }
   }

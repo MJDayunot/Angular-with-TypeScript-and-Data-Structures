@@ -1,30 +1,32 @@
-import { Component } from '@angular/core';  // Import Component
+import { Component, OnInit } from '@angular/core';
+import { MovielistService } from '../../services/movielist.service';  // Import the service
 
-// Define an interface for the Movie structure
 interface Movie {
   title: string;
   director: string;
-  releaseYear: number;  // Release year of the movie
+  releaseYear: number;
 }
 
 @Component({
-  selector: 'app-movie-list',  // Ensure this matches your HTML tag
-  templateUrl: './movielist.component.html',  // Path to the HTML file
-  styleUrls: ['./movielist.component.css']  // Path to the CSS file
+  selector: 'app-movie-list',
+  templateUrl: './movielist.component.html',
+  styleUrls: ['./movielist.component.css']
 })
-export class MovieListComponent {
-  // Declare properties for movie details
-  movieTitle: string = '';  // Variable to hold the movie title input
-  movieDirector: string = '';  // Variable to hold the movie director input
-  movieReleaseYear: number | null = null;  // Variable to hold the movie release year input
+export class MovieListComponent implements OnInit {
+  movieTitle: string = '';
+  movieDirector: string = '';
+  movieReleaseYear: number | null = null;
+  movieList: Movie[] = [];
 
-  // Array to hold the list of movies
-  movieList: Movie[] = [
-    { title: 'Inception', director: 'Christopher Nolan', releaseYear: 2010 }
+  // Inject the service into the component
+  constructor(private movielistService: MovielistService) {}
 
-  ];
+  // Load the movies from the service when the component initializes
+  ngOnInit() {
+    this.movieList = this.movielistService.getMovies();
+  }
 
-  // Method to add a new movie to the list
+  // Method to add a new movie using the service
   addMovie() {
     if (this.movieTitle && this.movieDirector && this.movieReleaseYear !== null) {
       const newMovie: Movie = {
@@ -32,15 +34,15 @@ export class MovieListComponent {
         director: this.movieDirector,
         releaseYear: this.movieReleaseYear
       };
-      this.movieList.push(newMovie);  // Add the new movie to the list
-      this.clearInputs();  // Clear the input fields after adding the movie
+      this.movielistService.addMovie(newMovie);  // Add the movie via the service
+      this.movieList = this.movielistService.getMovies();  // Refresh the list
+      this.clearInputs();
     }
   }
 
-  // Method to clear input fields
   clearInputs() {
     this.movieTitle = '';
     this.movieDirector = '';
-    this.movieReleaseYear = null;  // Reset to null
+    this.movieReleaseYear = null;
   }
 }

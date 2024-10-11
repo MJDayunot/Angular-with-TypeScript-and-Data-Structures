@@ -1,30 +1,21 @@
-import { Component } from '@angular/core';  // Import Component
-
-// Define an interface for the Subject structure
-interface Subject {
-  name: string;      // Name of the subject
-  code: string;      // Subject code (e.g., MATH101)
-  credits: number;   // Number of credits for the subject
-}
+import { Component } from '@angular/core';
+import { Subject, SubjectService } from '../../services/subjectlist.service';  // Import the service
 
 @Component({
-  selector: 'app-subject-list',  // Ensure this matches your HTML tag
-  templateUrl: './subjectlist.component.html',  // Path to the HTML file
-  styleUrls: ['./subjectlist.component.css']  // Path to the CSS file
+  selector: 'app-subject-list',
+  templateUrl: './subjectlist.component.html',
+  styleUrls: ['./subjectlist.component.css']
 })
 export class SubjectListComponent {
-  // Declare properties for subject details
-  subjectName: string = '';      // Variable to hold the subject name input
-  subjectCode: string = '';      // Variable to hold the subject code input
-  subjectCredits: number | null = null;  // Variable to hold the subject credits input
+  subjectName: string = '';
+  subjectCode: string = '';
+  subjectCredits: number | null = null;
+  subjectList: Subject[] = [];  // Initialize the subjectList
 
-  // Array to hold the list of subjects
-  subjectList: Subject[] = [
-    { name: 'Mathematics', code: 'MATH101', credits: 3 }
+  constructor(private subjectService: SubjectService) {
+    this.subjectList = this.subjectService.getSubjects();  // Fetch subjects from the service
+  }
 
-  ];
-
-  // Method to add a new subject to the list
   addSubject() {
     if (this.subjectName && this.subjectCode && this.subjectCredits !== null) {
       const newSubject: Subject = {
@@ -32,12 +23,11 @@ export class SubjectListComponent {
         code: this.subjectCode,
         credits: this.subjectCredits
       };
-      this.subjectList.push(newSubject);  // Add the new subject to the list
-      this.clearInputs();  // Clear the input fields after adding the subject
+      this.subjectService.addSubject(newSubject);  // Use service to add the subject
+      this.clearInputs();  // Clear input fields
     }
   }
 
-  // Method to clear input fields
   clearInputs() {
     this.subjectName = '';
     this.subjectCode = '';

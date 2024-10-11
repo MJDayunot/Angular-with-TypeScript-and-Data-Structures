@@ -1,21 +1,25 @@
 import { Component } from '@angular/core';
+import { MobileAppService } from '../../services/mobileapplist.service'; // Adjust the import path as needed
 
 @Component({
-  selector: 'app-mobile-app-list',  // Ensure this matches your HTML tag
-  templateUrl: './mobileapplist.component.html',  // Path to the HTML file
-  styleUrls: ['./mobileapplist.component.css']  // Path to the CSS file
+  selector: 'app-mobile-app-list',
+  templateUrl: './mobileapplist.component.html',
+  styleUrls: ['./mobileapplist.component.css']
 })
 export class MobileAppListComponent {
   appName: string = '';  // Variable to hold the app name input
-  appList: string[] = [  // Array to hold the list of mobile apps
-    'Facebook',
-  ];
+  appList: string[] = []; // Array to hold the list of mobile apps
+
+  constructor(private mobileAppService: MobileAppService) {
+    this.appList = this.mobileAppService.getAppList(); // Fetch initial app list from the service
+  }
 
   // Method to add a new mobile app to the list
   addApp() {
     if (this.appName) {
-      this.appList.push(this.appName);  // Add the new app to the list
+      this.mobileAppService.addApp(this.appName); // Use the service to add the app
       this.clearInput();  // Clear the input field after adding the app
+      this.appList = this.mobileAppService.getAppList(); // Refresh the list
     }
   }
 

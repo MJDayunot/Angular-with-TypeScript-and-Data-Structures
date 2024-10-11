@@ -1,28 +1,20 @@
-import { Component } from '@angular/core';  // Import Component
-
-// Define an interface for the Stationery structure
-interface StationeryItem {
-  name: string;       // Name of the stationery item
-  quantity: number;    // Quantity of the stationery item
-  price: number;       // Price of the stationery item
-}
+import { Component } from '@angular/core';
+import { StationeryService, StationeryItem } from '../../services/stationerylist.service'; // Adjust the import path as needed
 
 @Component({
-  selector: 'app-stationery-list',  // Ensure this matches your HTML tag
-  templateUrl: './stationerylist.component.html',  // Path to the HTML file
-  styleUrls: ['./stationerylist.component.css']  // Path to the CSS file
+  selector: 'app-stationery-list',
+  templateUrl: './stationerylist.component.html',
+  styleUrls: ['./stationerylist.component.css']
 })
 export class StationeryListComponent {
-  // Declare properties for stationery item details
   itemName: string = '';          // Variable to hold the stationery item name input
   itemQuantity: number | null = null; // Variable to hold the stationery item quantity input
   itemPrice: number | null = null;    // Variable to hold the stationery item price input
+  stationeryList: StationeryItem[] = []; // Initialize as an empty array
 
-  // Array to hold the list of stationery items
-  stationeryList: StationeryItem[] = [
-    { name: 'Notebook', quantity: 20, price: 1.50 },
-
-  ];
+  constructor(private stationeryService: StationeryService) {
+    this.stationeryList = this.stationeryService.getStationeryItems(); // Fetch items from the service
+  }
 
   // Method to add a new stationery item to the list
   addStationeryItem() {
@@ -32,7 +24,7 @@ export class StationeryListComponent {
         quantity: this.itemQuantity,
         price: this.itemPrice,
       };
-      this.stationeryList.push(newItem);  // Add the new stationery item to the list
+      this.stationeryService.addStationeryItem(newItem); // Use the service to add the item
       this.clearInputs();  // Clear the input fields after adding the item
     }
   }

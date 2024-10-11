@@ -1,29 +1,32 @@
-import { Component } from '@angular/core';  // Import Component
+import { Component } from '@angular/core';
+import { BooklistService } from '../../services/booklist.service';  // Import the service
 
-// Define an interface for the Book structure
 interface Book {
   title: string;
   author: string;
-  year: number;  // Publication year
+  year: number;
 }
 
 @Component({
-  selector: 'app-book-list',  // Ensure this matches your HTML tag
-  templateUrl: './booklist.component.html',  // Path to the HTML file
-  styleUrls: ['./booklist.component.css']  // Path to the CSS file
+  selector: 'app-book-list',
+  templateUrl: './booklist.component.html',
+  styleUrls: ['./booklist.component.css']
 })
 export class BookListComponent {
-  // Declare properties for book details
-  bookTitle: string = '';  // Variable to hold the book title input
-  bookAuthor: string = '';  // Variable to hold the book author input
-  bookYear: number | null = null;  // Variable to hold the book publication year input
+  bookTitle: string = '';
+  bookAuthor: string = '';
+  bookYear: number | null = null;
+  bookList: Book[] = [];
 
-  // Array to hold the list of books
-  bookList: Book[] = [
-    { title: 'To Kill a Mockingbird', author: 'Harper Lee', year: 1960 }
-  ];
+  // Inject the service into the component
+  constructor(private booklistService: BooklistService) {}
 
-  // Method to add a new book to the list
+  // Load the books from the service when the component initializes
+  ngOnInit() {
+    this.bookList = this.booklistService.getBooks();
+  }
+
+  // Method to add a new book using the service
   addBook() {
     if (this.bookTitle && this.bookAuthor && this.bookYear !== null) {
       const newBook: Book = {
@@ -31,15 +34,15 @@ export class BookListComponent {
         author: this.bookAuthor,
         year: this.bookYear
       };
-      this.bookList.push(newBook);  // Add the new book to the list
-      this.clearInputs();  // Clear the input fields after adding the book
+      this.booklistService.addBook(newBook);  // Add the book via the service
+      this.bookList = this.booklistService.getBooks();  // Refresh the list
+      this.clearInputs();
     }
   }
 
-  // Method to clear input fields
   clearInputs() {
     this.bookTitle = '';
     this.bookAuthor = '';
-    this.bookYear = null;  // Reset to null
+    this.bookYear = null;
   }
 }

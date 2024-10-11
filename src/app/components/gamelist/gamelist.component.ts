@@ -1,28 +1,21 @@
-import { Component } from '@angular/core';  // Import Component
-
-// Define an interface for the Game structure
-interface Game {
-  title: string;  // Title of the game
-  genre: string;  // Genre of the game
-  releaseYear: number;  // Release year of the game
-}
+import { Component } from '@angular/core';
+import { Game, GameService } from '../../services/gamelist.service'; // Correct import path
 
 @Component({
-  selector: 'app-game-list',  // Ensure this matches your HTML tag
-  templateUrl: './gamelist.component.html',  // Path to the HTML file
-  styleUrls: ['./gamelist.component.css']  // Path to the CSS file
+  selector: 'app-game-list',
+  templateUrl: './gamelist.component.html',
+  styleUrls: ['./gamelist.component.css']
 })
 export class GameListComponent {
-  // Declare properties for game details
-  gameTitle: string = '';      // Variable to hold the game title input
-  gameGenre: string = '';      // Variable to hold the game genre input
-  gameReleaseYear: number | null = null;  // Variable to hold the release year input (nullable)
+  gameTitle: string = '';           // Variable to hold the game title input
+  gameGenre: string = '';           // Variable to hold the game genre input
+  gameReleaseYear: number | null = null; // Variable to hold the release year input (nullable)
 
-  // Array to hold the list of video games
-  gameList: Game[] = [
-    { title: 'The Legend of Zelda: Breath of the Wild', genre: 'Action-adventure', releaseYear: 2017 },
+  gameList: Game[] = [];            // Initialize the game list
 
-  ];
+  constructor(private gameService: GameService) {
+    this.gameList = this.gameService.getGames(); // Fetch games from the service
+  }
 
   // Method to add a new video game to the list
   addGame() {
@@ -32,7 +25,7 @@ export class GameListComponent {
         genre: this.gameGenre,
         releaseYear: this.gameReleaseYear
       };
-      this.gameList.push(newGame);  // Add the new game to the list
+      this.gameService.addGame(newGame); // Use the service to add the game
       this.clearInputs();  // Clear the input fields after adding the game
     }
   }

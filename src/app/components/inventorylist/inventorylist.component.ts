@@ -1,28 +1,20 @@
-import { Component } from '@angular/core';  // Import Component
-
-// Define an interface for the Inventory Item structure
-interface InventoryItem {
-  name: string;     // Name of the inventory item
-  quantity: number; // Quantity of the inventory item
-  price: number;    // Price of the inventory item
-}
+import { Component } from '@angular/core';
+import { InventoryService, InventoryItem } from '../../services/inventorylist.service'; // Adjust the import path as needed
 
 @Component({
-  selector: 'app-inventory-list',  // Ensure this matches your HTML tag
-  templateUrl: './inventorylist.component.html',  // Path to the HTML file
-  styleUrls: ['./inventorylist.component.css']  // Path to the CSS file
+  selector: 'app-inventory-list',
+  templateUrl: './inventorylist.component.html',
+  styleUrls: ['./inventorylist.component.css']
 })
 export class InventoryListComponent {
-  // Declare properties for inventory item details
   itemName: string = '';          // Variable to hold the inventory item name input
   itemQuantity: number | null = null; // Variable to hold the inventory item quantity input
   itemPrice: number | null = null;    // Variable to hold the inventory item price input
+  inventoryList: InventoryItem[] = []; // Initialize as an empty array
 
-  // Array to hold the list of inventory items
-  inventoryList: InventoryItem[] = [
-    { name: 'Laptop', quantity: 5, price: 999.99 },
-
-  ];
+  constructor(private inventoryService: InventoryService) {
+    this.inventoryList = this.inventoryService.getInventoryItems(); // Fetch inventory items from the service
+  }
 
   // Method to add a new inventory item to the list
   addInventoryItem() {
@@ -32,7 +24,7 @@ export class InventoryListComponent {
         quantity: this.itemQuantity,
         price: this.itemPrice,
       };
-      this.inventoryList.push(newItem);  // Add the new inventory item to the list
+      this.inventoryService.addInventoryItem(newItem); // Use the service to add the item
       this.clearInputs();  // Clear the input fields after adding the item
     }
   }

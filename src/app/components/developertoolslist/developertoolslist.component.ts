@@ -1,25 +1,31 @@
 import { Component } from '@angular/core';
+import { DeveloperToolsService } from '../../services/developertoolslist.service'; // Adjust the import path as needed
+
+interface DeveloperTool {
+  name: string;
+  description: string;
+}
 
 @Component({
-  selector: 'app-developer-tools-list',  // Ensure this matches your HTML tag
-  templateUrl: './developertoolslist.component.html',  // Path to the HTML file
-  styleUrls: ['./developertoolslist.component.css']  // Path to the CSS file
+  selector: 'app-developer-tools-list',
+  templateUrl: './developertoolslist.component.html',
+  styleUrls: ['./developertoolslist.component.css']
 })
 export class DeveloperToolsListComponent {
   toolName: string = '';  // Variable to hold the tool name input
   toolDescription: string = '';  // Variable to hold the tool description input
+  developerToolsList: DeveloperTool[] = [];  // Array to hold the list of developer tools
 
-  // Array to hold the list of developer tools
-  developerToolsList: { name: string; description: string }[] = [
-    { name: 'Visual Studio Code', description: 'A popular code editor with extensions.' },
-
-  ];
+  constructor(private developerToolsService: DeveloperToolsService) {
+    this.developerToolsList = this.developerToolsService.getDeveloperToolsList(); // Fetch initial developer tools list from the service
+  }
 
   // Method to add a new developer tool to the list
   addTool() {
     if (this.toolName && this.toolDescription) {
-      this.developerToolsList.push({ name: this.toolName, description: this.toolDescription });  // Add the new tool to the list
+      this.developerToolsService.addTool({ name: this.toolName, description: this.toolDescription }); // Use the service to add the tool
       this.clearInput();  // Clear the input fields after adding the tool
+      this.developerToolsList = this.developerToolsService.getDeveloperToolsList(); // Refresh the list
     }
   }
 

@@ -1,21 +1,25 @@
 import { Component } from '@angular/core';
+import { ExerciseService } from '../../services/exerciselist.service'; // Adjust the import path as needed
 
 @Component({
-  selector: 'app-exercise-list',  // Ensure this matches your HTML tag
-  templateUrl: './exerciselist.component.html',  // Path to the HTML file
-  styleUrls: ['./exerciselist.component.css']  // Path to the CSS file
+  selector: 'app-exercise-list',
+  templateUrl: './exerciselist.component.html',
+  styleUrls: ['./exerciselist.component.css']
 })
 export class ExerciseListComponent {
   exerciseName: string = '';  // Variable to hold the exercise name input
-  exerciseList: string[] = [    // Array to hold the list of exercises
-    'Push-ups',
-  ];
+  exerciseList: string[] = [];  // Array to hold the list of exercises
+
+  constructor(private exerciseService: ExerciseService) {
+    this.exerciseList = this.exerciseService.getExerciseList(); // Fetch initial exercise list from the service
+  }
 
   // Method to add a new exercise to the list
   addExercise() {
     if (this.exerciseName) {
-      this.exerciseList.push(this.exerciseName);  // Add the new exercise to the list
+      this.exerciseService.addExercise(this.exerciseName); // Use the service to add the exercise
       this.clearInput();  // Clear the input field after adding the exercise
+      this.exerciseList = this.exerciseService.getExerciseList(); // Refresh the list
     }
   }
 

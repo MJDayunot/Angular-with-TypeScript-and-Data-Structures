@@ -1,21 +1,25 @@
 import { Component } from '@angular/core';
+import { PaintingService } from '../../services/paintinglist.service'; // Adjust the import path as needed
 
 @Component({
-  selector: 'app-painting-list',  // Ensure this matches your HTML tag
-  templateUrl: './paintinglist.component.html',  // Path to the HTML file
-  styleUrls: ['./paintinglist.component.css']  // Path to the CSS file
+  selector: 'app-painting-list',
+  templateUrl: './paintinglist.component.html',
+  styleUrls: ['./paintinglist.component.css']
 })
 export class PaintingListComponent {
   paintingName: string = '';  // Variable to hold the painting name input
-  paintingList: string[] = [   // Array to hold the list of paintings
-    'Mona Lisa',
-  ];
+  paintingList: string[] = [];  // Array to hold the list of paintings
+
+  constructor(private paintingService: PaintingService) {
+    this.paintingList = this.paintingService.getPaintingList(); // Fetch initial painting list from the service
+  }
 
   // Method to add a new painting to the list
   addPainting() {
     if (this.paintingName) {
-      this.paintingList.push(this.paintingName);  // Add the new painting to the list
+      this.paintingService.addPainting(this.paintingName); // Use the service to add the painting
       this.clearInput();  // Clear the input field after adding the painting
+      this.paintingList = this.paintingService.getPaintingList(); // Refresh the list
     }
   }
 

@@ -1,32 +1,34 @@
-import { Component } from '@angular/core';  // Import Component
+import { Component } from '@angular/core';
+import { LaptopSpecificationsService } from '../../services/laptopspecificationslist.service'; // Adjust the import path as needed
 
-// Define an interface for the Laptop Specification structure
+// Define the interface for the Laptop Specification structure
 interface LaptopSpecification {
-  model: string;            // Model of the laptop
-  processor: string;        // Processor type
-  ram: string;              // RAM size
-  storage: string;          // Storage capacity
-  display: string;          // Display size
+  model: string;
+  processor: string;
+  ram: string;
+  storage: string;
+  display: string;
 }
 
 @Component({
-  selector: 'app-laptop-specifications-list',  // Ensure this matches your HTML tag
-  templateUrl: './laptopspecificationslist.component.html',  // Path to the HTML file
-  styleUrls: ['./laptopspecificationslist.component.css']  // Path to the CSS file
+  selector: 'app-laptop-specifications-list',
+  templateUrl: './laptopspecificationslist.component.html',
+  styleUrls: ['./laptopspecificationslist.component.css']
 })
 export class LaptopSpecificationsListComponent {
   // Declare properties for laptop specifications
-  laptopModel: string = '';           // Variable to hold the laptop model input
-  laptopProcessor: string = '';       // Variable to hold the laptop processor input
-  laptopRam: string = '';             // Variable to hold the laptop RAM input
-  laptopStorage: string = '';         // Variable to hold the laptop storage input
-  laptopDisplay: string = '';         // Variable to hold the laptop display size input
+  laptopModel: string = '';
+  laptopProcessor: string = '';
+  laptopRam: string = '';
+  laptopStorage: string = '';
+  laptopDisplay: string = '';
 
   // Array to hold the list of laptop specifications
-  laptopSpecificationsList: LaptopSpecification[] = [
-    { model: 'XPS 13', processor: 'Intel i7', ram: '16GB', storage: '512GB SSD', display: '13.3-inch' },
+  laptopSpecificationsList: LaptopSpecification[] = [];
 
-  ];
+  constructor(private laptopSpecificationsService: LaptopSpecificationsService) {
+    this.laptopSpecificationsList = this.laptopSpecificationsService.getSpecifications(); // Fetch initial specifications from the service
+  }
 
   // Method to add a new laptop specification to the list
   addSpecification() {
@@ -38,8 +40,9 @@ export class LaptopSpecificationsListComponent {
         storage: this.laptopStorage,
         display: this.laptopDisplay,
       };
-      this.laptopSpecificationsList.push(newSpecification);  // Add the new specification to the list
+      this.laptopSpecificationsService.addSpecification(newSpecification); // Use the service to add the specification
       this.clearInputs();  // Clear the input fields after adding the specification
+      this.laptopSpecificationsList = this.laptopSpecificationsService.getSpecifications(); // Refresh the list
     }
   }
 

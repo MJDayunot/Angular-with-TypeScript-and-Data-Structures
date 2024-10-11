@@ -1,30 +1,32 @@
-import { Component } from '@angular/core';  // Import Component
+import { Component, OnInit } from '@angular/core';
+import { CarModelService } from '../../services/carmodellist.service';  // Import the service
 
-// Define an interface for the Car Model structure
 interface CarModel {
-  make: string;          // Make of the car (e.g., Toyota, Ford)
-  model: string;         // Model of the car (e.g., Camry, Mustang)
-  year: number;         // Release year of the car model
+  make: string;  // Make of the car (e.g., Toyota, Ford)
+  model: string; // Model of the car (e.g., Camry, Mustang)
+  year: number;  // Release year of the car model
 }
 
 @Component({
-  selector: 'app-car-model-list',  // Ensure this matches your HTML tag
-  templateUrl: './carmodellist.component.html',  // Path to the HTML file
-  styleUrls: ['./carmodellist.component.css']  // Path to the CSS file
+  selector: 'app-car-model-list',
+  templateUrl: './carmodellist.component.html',
+  styleUrls: ['./carmodellist.component.css']
 })
-export class CarModelListComponent {
-  // Declare properties for car model details
-  carMake: string = '';    // Variable to hold the car make input
-  carModel: string = '';    // Variable to hold the car model input
-  carYear: number | null = null;  // Variable to hold the car release year input
+export class CarModelListComponent implements OnInit {
+  carMake: string = '';
+  carModel: string = '';
+  carYear: number | null = null;
+  carModelList: CarModel[] = [];
 
-  // Array to hold the list of car models
-  carModelList: CarModel[] = [
-    { make: 'Toyota', model: 'Camry', year: 2021 }
+  // Inject the service into the component
+  constructor(private carModelService: CarModelService) {}
 
-  ];
+  // Load the car models from the service when the component initializes
+  ngOnInit() {
+    this.carModelList = this.carModelService.getCarModels();
+  }
 
-  // Method to add a new car model to the list
+  // Method to add a new car model using the service
   addCarModel() {
     if (this.carMake && this.carModel && this.carYear !== null) {
       const newCarModel: CarModel = {
@@ -32,15 +34,15 @@ export class CarModelListComponent {
         model: this.carModel,
         year: this.carYear
       };
-      this.carModelList.push(newCarModel);  // Add the new car model to the list
-      this.clearInputs();  // Clear the input fields after adding the car model
+      this.carModelService.addCarModel(newCarModel);  // Add the car model via the service
+      this.carModelList = this.carModelService.getCarModels();  // Refresh the list
+      this.clearInputs();
     }
   }
 
-  // Method to clear input fields
   clearInputs() {
     this.carMake = '';
     this.carModel = '';
-    this.carYear = null;  // Reset to null
+    this.carYear = null;
   }
 }

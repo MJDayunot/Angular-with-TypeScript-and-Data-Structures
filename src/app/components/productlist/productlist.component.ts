@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';  // Import Component
+import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../../services/productlist.service'; // Move up two levels
 
-// Define an interface for the Product structure
+
 interface Product {
   name: string;      // Name of the product
   price: number;     // Price of the product
@@ -8,23 +9,25 @@ interface Product {
 }
 
 @Component({
-  selector: 'app-product-list',  // Ensure this matches your HTML tag
-  templateUrl: './productlist.component.html',  // Path to the HTML file
-  styleUrls: ['./productlist.component.css']  // Path to the CSS file
+  selector: 'app-product-list',
+  templateUrl: './productlist.component.html',
+  styleUrls: ['./productlist.component.css']
 })
-export class ProductListComponent {
-  // Declare properties for product details
-  productName: string = '';      // Variable to hold the product name input
-  productPrice: number | null = null;  // Variable to hold the product price input
-  productQuantity: number | null = null;  // Variable to hold the product quantity input
+export class ProductListComponent implements OnInit {
+  productName: string = '';
+  productPrice: number | null = null;
+  productQuantity: number | null = null;
+  productList: Product[] = [];
 
-  // Array to hold the list of products
-  productList: Product[] = [
-    { name: 'Laptop', price: 1200, quantity: 10 }
+  // Inject the service into the component
+  constructor(private productService: ProductService) {}
 
-  ];
+  // Load the products from the service when the component initializes
+  ngOnInit() {
+    this.productList = this.productService.getProducts();
+  }
 
-  // Method to add a new product to the list
+  // Method to add a new product using the service
   addProduct() {
     if (this.productName && this.productPrice !== null && this.productQuantity !== null) {
       const newProduct: Product = {
@@ -32,15 +35,15 @@ export class ProductListComponent {
         price: this.productPrice,
         quantity: this.productQuantity
       };
-      this.productList.push(newProduct);  // Add the new product to the list
-      this.clearInputs();  // Clear the input fields after adding the product
+      this.productService.addProduct(newProduct);  // Add the product via the service
+      this.productList = this.productService.getProducts();  // Refresh the list
+      this.clearInputs();
     }
   }
 
-  // Method to clear input fields
   clearInputs() {
     this.productName = '';
-    this.productPrice = null;  // Reset to null
-    this.productQuantity = null;  // Reset to null
+    this.productPrice = null;
+    this.productQuantity = null;
   }
 }

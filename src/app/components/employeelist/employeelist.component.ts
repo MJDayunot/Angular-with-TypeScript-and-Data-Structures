@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';  // Import Component
+import { Component } from '@angular/core';
+import { EmployeelistService } from '../../services/employeelist.service';
 
-// Define an interface for the Employee structure
 interface Employee {
   name: string;
   age: number;
@@ -8,22 +8,25 @@ interface Employee {
 }
 
 @Component({
-  selector: 'app-employeelist',  // Ensure this matches your HTML tag
-  templateUrl: './employeelist.component.html',  // Path to the HTML file
-  styleUrls: ['./employeelist.component.css']  // Path to the CSS file
+  selector: 'app-employeelist',
+  templateUrl: './employeelist.component.html',
+  styleUrls: ['./employeelist.component.css']
 })
 export class EmployeeListComponent {
-  // Declare properties for employee details
-  employeeName: string = '';  // Variable to hold the employee name input
-  employeeAge: number | null = null;  // Variable to hold the employee age input
-  employeePosition: string = '';  // Variable to hold the employee position input
+  employeeName: string = '';
+  employeeAge: number | null = null;
+  employeePosition: string = '';
+  employeeList: Employee[] = [];
 
-  // Array to hold the list of employees
-  employeeList: Employee[] = [
-    { name: 'Alice Johnson', age: 30, position: 'Software Engineer' }
-  ];
+  // Inject the service into the component
+  constructor(private employeelistService: EmployeelistService) {}
 
-  // Method to add a new employee to the list
+  // Load employees on component initialization
+  ngOnInit() {
+    this.employeeList = this.employeelistService.getEmployees();
+  }
+
+  // Add a new employee using the service
   addEmployee() {
     if (this.employeeName && this.employeeAge !== null && this.employeePosition) {
       const newEmployee: Employee = {
@@ -31,15 +34,15 @@ export class EmployeeListComponent {
         age: this.employeeAge,
         position: this.employeePosition
       };
-      this.employeeList.push(newEmployee);  // Add the new employee to the list
-      this.clearInputs();  // Clear the input fields after adding the employee
+      this.employeelistService.addEmployee(newEmployee);  // Add employee via service
+      this.employeeList = this.employeelistService.getEmployees();  // Refresh the list
+      this.clearInputs();
     }
   }
 
-  // Method to clear input fields
   clearInputs() {
     this.employeeName = '';
-    this.employeeAge = null;  // Reset to null
+    this.employeeAge = null;
     this.employeePosition = '';
   }
 }

@@ -1,21 +1,25 @@
 import { Component } from '@angular/core';
+import { BuildingService } from '../../services/buildinglist.service'; // Adjust the import path as needed
 
 @Component({
-  selector: 'app-building-list',  // Ensure this matches your HTML tag
-  templateUrl: './buildinglist.component.html',  // Path to the HTML file
-  styleUrls: ['./buildinglist.component.css']  // Path to the CSS file
+  selector: 'app-building-list',
+  templateUrl: './buildinglist.component.html',
+  styleUrls: ['./buildinglist.component.css']
 })
 export class BuildingListComponent {
   buildingName: string = '';  // Variable to hold the building name input
-  buildingList: string[] = [   // Array to hold the list of buildings
-    'Library',
-  ];
+  buildingList: string[] = [];  // Array to hold the list of buildings
+
+  constructor(private buildingService: BuildingService) {
+    this.buildingList = this.buildingService.getBuildingList(); // Fetch initial building list from the service
+  }
 
   // Method to add a new building to the list
   addBuilding() {
     if (this.buildingName) {
-      this.buildingList.push(this.buildingName);  // Add the new building to the list
+      this.buildingService.addBuilding(this.buildingName); // Use the service to add the building
       this.clearInput();  // Clear the input field after adding the building
+      this.buildingList = this.buildingService.getBuildingList(); // Refresh the list
     }
   }
 

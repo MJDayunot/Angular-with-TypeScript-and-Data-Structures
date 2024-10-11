@@ -1,40 +1,31 @@
-import { Component } from '@angular/core';  // Import Component
-
-// Define an interface for the Sport structure
-interface Sport {
-  name: string;  // Name of the sport
-  category: string;  // Category (e.g., team, individual)
-}
+import { Component } from '@angular/core';
+import { Sport, SportService } from '../../services/sportslist.service';  // Import the service
 
 @Component({
-  selector: 'app-sports-list',  // Ensure this matches your HTML tag
-  templateUrl: './sportslist.component.html',  // Path to the HTML file
-  styleUrls: ['./sportslist.component.css']  // Path to the CSS file
+  selector: 'app-sports-list',
+  templateUrl: './sportslist.component.html',
+  styleUrls: ['./sportslist.component.css']
 })
 export class SportsListComponent {
-  // Declare properties for sport details
   sportName: string = '';      // Variable to hold the sport name input
   sportCategory: string = '';  // Variable to hold the category input
+  sportsList: Sport[] = [];    // Initialize the sports list
 
-  // Array to hold the list of sports
-  sportsList: Sport[] = [
-    { name: 'Soccer', category: 'Team' },
+  constructor(private sportService: SportService) {
+    this.sportsList = this.sportService.getSports();  // Fetch sports from the service
+  }
 
-  ];
-
-  // Method to add a new sport to the list
   addSport() {
     if (this.sportName && this.sportCategory) {
       const newSport: Sport = {
         name: this.sportName,
         category: this.sportCategory
       };
-      this.sportsList.push(newSport);  // Add the new sport to the list
-      this.clearInputs();  // Clear the input fields after adding the sport
+      this.sportService.addSport(newSport);  // Use the service to add the sport
+      this.clearInputs();  // Clear input fields
     }
   }
 
-  // Method to clear input fields
   clearInputs() {
     this.sportName = '';
     this.sportCategory = '';

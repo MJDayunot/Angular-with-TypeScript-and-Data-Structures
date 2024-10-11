@@ -1,26 +1,19 @@
-import { Component } from '@angular/core';  // Import Component
-
-// Define an interface for the Animal structure
-interface Animal {
-  name: string;  // Name of the animal
-  species: string;  // Species of the animal
-}
+import { Component } from '@angular/core';
+import { Animal, AnimalService } from '../../services/animallist.service'; // Correct import path
 
 @Component({
-  selector: 'app-animal-list',  // Ensure this matches your HTML tag
-  templateUrl: './animallist.component.html',  // Path to the HTML file
-  styleUrls: ['./animallist.component.css']  // Path to the CSS file
+  selector: 'app-animal-list',
+  templateUrl: './animallist.component.html',
+  styleUrls: ['./animallist.component.css']
 })
 export class AnimalListComponent {
-  // Declare properties for animal details
-  animalName: string = '';      // Variable to hold the animal name input
-  animalSpecies: string = '';   // Variable to hold the species input
+  animalName: string = '';        // Variable to hold the animal name input
+  animalSpecies: string = '';     // Variable to hold the species input
+  animalList: Animal[] = [];      // Initialize the animal list
 
-  // Array to hold the list of animals
-  animalList: Animal[] = [
-    { name: 'Lion', species: 'Panthera leo' },
-
-  ];
+  constructor(private animalService: AnimalService) {
+    this.animalList = this.animalService.getAnimals(); // Fetch animals from the service
+  }
 
   // Method to add a new animal to the list
   addAnimal() {
@@ -29,8 +22,8 @@ export class AnimalListComponent {
         name: this.animalName,
         species: this.animalSpecies
       };
-      this.animalList.push(newAnimal);  // Add the new animal to the list
-      this.clearInputs();  // Clear the input fields after adding the animal
+      this.animalService.addAnimal(newAnimal); // Use the service to add the animal
+      this.clearInputs(); // Clear input fields
     }
   }
 

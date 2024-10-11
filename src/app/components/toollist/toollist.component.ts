@@ -1,25 +1,19 @@
-import { Component } from '@angular/core';  // Import Component
-
-// Define an interface for the Tool structure
-interface Tool {
-  name: string;  // Name of the tool
-  type: string;  // Type of the tool
-}
+import { Component } from '@angular/core';
+import { Tool, ToolService } from '../../services/toollist.service'; // Correct import path
 
 @Component({
-  selector: 'app-tool-list',  // Ensure this matches your HTML tag
-  templateUrl: './toollist.component.html',  // Path to the HTML file
-  styleUrls: ['./toollist.component.css']  // Path to the CSS file
+  selector: 'app-tool-list',
+  templateUrl: './toollist.component.html',
+  styleUrls: ['./toollist.component.css']
 })
 export class ToolListComponent {
-  // Declare properties for tool details
-  toolName: string = '';      // Variable to hold the tool name input
-  toolType: string = '';      // Variable to hold the type input
+  toolName: string = '';        // Variable to hold the tool name input
+  toolType: string = '';        // Variable to hold the type input
+  toolList: Tool[] = [];        // Initialize the tool list
 
-  // Array to hold the list of tools
-  toolList: Tool[] = [
-    { name: 'Hammer', type: 'Hand Tool' },
-  ];
+  constructor(private toolService: ToolService) {
+    this.toolList = this.toolService.getTools(); // Fetch tools from the service
+  }
 
   // Method to add a new tool to the list
   addTool() {
@@ -28,8 +22,8 @@ export class ToolListComponent {
         name: this.toolName,
         type: this.toolType
       };
-      this.toolList.push(newTool);  // Add the new tool to the list
-      this.clearInputs();  // Clear the input fields after adding the tool
+      this.toolService.addTool(newTool); // Use the service to add the tool
+      this.clearInputs(); // Clear input fields
     }
   }
 

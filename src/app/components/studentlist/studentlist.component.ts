@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-// Import FormsModule
-// Import CommonModule
+import { StudentlistService } from '../../services/studentlist.service';
+
 
 interface Student {
   name: string;
@@ -17,19 +17,24 @@ export class StudentListComponent {
   studentName: string = '';
   studentAge: number | null = null;
   studentGrade: string = '';
+  studentList: Student[] = [];
 
-  studentList: Student[] = [
-    { name: 'John Doe', age: 16, grade: 'Grade 10' }
-  ];
+  constructor(private studentListService: StudentlistService) {}
+
+  ngOnInit() {
+    // Load students from the service
+    this.studentList = this.studentListService.getStudents();
+  }
 
   addStudent() {
     if (this.studentName && this.studentAge !== null && this.studentGrade) {
       const newStudent: Student = {
         name: this.studentName,
         age: this.studentAge,
-        grade: this.studentGrade
+        grade: this.studentGrade,
       };
-      this.studentList.push(newStudent);
+      this.studentListService.addStudent(newStudent); // Use service to add the student
+      this.studentList = this.studentListService.getStudents(); // Refresh the list
       this.clearInputs();
     }
   }

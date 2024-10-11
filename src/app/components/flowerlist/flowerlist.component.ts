@@ -1,27 +1,20 @@
-import { Component } from '@angular/core';  // Import Component
-
-// Define an interface for the Flower structure
-interface Flower {
-  name: string;        // Name of the flower
-  color: string;       // Color of the flower
-  quantity: number;    // Quantity of the flower
-}
+import { Component } from '@angular/core';
+import { FlowerService, Flower } from '../../services/flowerlist.service'; // Adjust the import path as needed
 
 @Component({
-  selector: 'app-flower-list',  // Ensure this matches your HTML tag
-  templateUrl: './flowerlist.component.html',  // Path to the HTML file
-  styleUrls: ['./flowerlist.component.css']  // Path to the CSS file
+  selector: 'app-flower-list',
+  templateUrl: './flowerlist.component.html',
+  styleUrls: ['./flowerlist.component.css']
 })
 export class FlowerListComponent {
-  // Declare properties for flower details
   flowerName: string = '';           // Variable to hold the flower name input
   flowerColor: string = '';          // Variable to hold the flower color input
   flowerQuantity: number | null = null; // Variable to hold the flower quantity input
+  flowerList: Flower[] = [];         // Initialize as an empty array
 
-  // Array to hold the list of flowers
-  flowerList: Flower[] = [
-    { name: 'Roses', color: 'Red', quantity: 12 },
-  ];
+  constructor(private flowerService: FlowerService) {
+    this.flowerList = this.flowerService.getFlowers(); // Fetch items from the service
+  }
 
   // Method to add a new flower to the list
   addFlower() {
@@ -31,7 +24,7 @@ export class FlowerListComponent {
         color: this.flowerColor,
         quantity: this.flowerQuantity,
       };
-      this.flowerList.push(newFlower);  // Add the new flower to the list
+      this.flowerService.addFlower(newFlower); // Use the service to add the flower
       this.clearInputs();  // Clear the input fields after adding the flower
     }
   }

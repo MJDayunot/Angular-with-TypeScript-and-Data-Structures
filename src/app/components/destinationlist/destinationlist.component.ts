@@ -1,27 +1,20 @@
-import { Component } from '@angular/core';  // Import Component
-
-// Define an interface for the Destination structure
-interface Destination {
-  name: string;        // Name of the destination
-  country: string;     // Country of the destination
-  attractions: string; // Main attractions at the destination
-}
+import { Component } from '@angular/core';
+import { DestinationService, Destination } from '../../services/destinationlist.service'; // Adjust the import path as needed
 
 @Component({
-  selector: 'app-destination-list',  // Ensure this matches your HTML tag
-  templateUrl: './destinationlist.component.html',  // Path to the HTML file
-  styleUrls: ['./destinationlist.component.css']  // Path to the CSS file
+  selector: 'app-destination-list',
+  templateUrl: './destinationlist.component.html',
+  styleUrls: ['./destinationlist.component.css']
 })
 export class DestinationListComponent {
-  // Declare properties for destination details
   destinationName: string = '';          // Variable to hold the destination name input
   destinationCountry: string = '';       // Variable to hold the destination country input
   destinationAttractions: string = '';    // Variable to hold the destination attractions input
+  destinationList: Destination[] = [];   // Initialize as an empty array
 
-  // Array to hold the list of destinations
-  destinationList: Destination[] = [
-    { name: 'Paris', country: 'France', attractions: 'Eiffel Tower, Louvre Museum' },
-  ];
+  constructor(private destinationService: DestinationService) {
+    this.destinationList = this.destinationService.getDestinations(); // Fetch items from the service
+  }
 
   // Method to add a new destination to the list
   addDestination() {
@@ -31,7 +24,7 @@ export class DestinationListComponent {
         country: this.destinationCountry,
         attractions: this.destinationAttractions,
       };
-      this.destinationList.push(newDestination);  // Add the new destination to the list
+      this.destinationService.addDestination(newDestination); // Use the service to add the destination
       this.clearInputs();  // Clear the input fields after adding the destination
     }
   }

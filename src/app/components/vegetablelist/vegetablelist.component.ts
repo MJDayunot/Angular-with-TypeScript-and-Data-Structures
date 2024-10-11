@@ -1,40 +1,31 @@
-import { Component } from '@angular/core';  // Import Component
-
-// Define an interface for the Vegetable structure
-interface Vegetable {
-  name: string;  // Name of the vegetable
-  price: number;  // Price of the vegetable
-}
+import { Component } from '@angular/core';
+import { Vegetable, VegetableService } from '../../services/vegetablelist.service'; // Ensure this path is correct
 
 @Component({
-  selector: 'app-vegetable-list',  // Ensure this matches your HTML tag
-  templateUrl: './vegetablelist.component.html',  // Path to the HTML file
-  styleUrls: ['./vegetablelist.component.css']  // Path to the CSS file
+  selector: 'app-vegetable-list',
+  templateUrl: './vegetablelist.component.html',
+  styleUrls: ['./vegetablelist.component.css']
 })
 export class VegetableListComponent {
-  // Declare properties for vegetable details
-  vegetableName: string = '';  // Variable to hold the vegetable name input
+  vegetableName: string = '';      // Variable to hold the vegetable name input
   vegetablePrice: number | null = null;  // Variable to hold the vegetable price input
+  vegetableList: Vegetable[] = [];  // Initialize the vegetable list
 
-  // Array to hold the list of vegetables
-  vegetableList: Vegetable[] = [
-    { name: 'Carrot', price: 1.5 },
+  constructor(private vegetableService: VegetableService) {
+    this.vegetableList = this.vegetableService.getVegetables();  // Fetch vegetables from the service
+  }
 
-  ];
-
-  // Method to add a new vegetable to the list
   addVegetable() {
     if (this.vegetableName && this.vegetablePrice !== null) {
       const newVegetable: Vegetable = {
         name: this.vegetableName,
         price: this.vegetablePrice
       };
-      this.vegetableList.push(newVegetable);  // Add the new vegetable to the list
-      this.clearInputs();  // Clear the input fields after adding the vegetable
+      this.vegetableService.addVegetable(newVegetable);  // Use the service to add the vegetable
+      this.clearInputs();  // Clear input fields
     }
   }
 
-  // Method to clear input fields
   clearInputs() {
     this.vegetableName = '';
     this.vegetablePrice = null;

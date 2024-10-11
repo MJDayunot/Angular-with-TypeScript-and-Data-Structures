@@ -1,39 +1,31 @@
-import { Component } from '@angular/core';  // Import Component
-
-// Define an interface for the Country structure
-interface Country {
-  name: string;       // Name of the country
-  continent: string;  // Continent the country belongs to
-}
+import { Component } from '@angular/core';
+import { Country, CountryService } from '../../services/countrylist.service';  // Import the service
 
 @Component({
-  selector: 'app-country-list',  // Ensure this matches your HTML tag
-  templateUrl: './countrylist.component.html',  // Path to the HTML file
-  styleUrls: ['./countrylist.component.css']  // Path to the CSS file
+  selector: 'app-country-list',
+  templateUrl: './countrylist.component.html',
+  styleUrls: ['./countrylist.component.css']
 })
 export class CountryListComponent {
-  // Declare properties for country details
-  countryName: string = '';      // Variable to hold the country name input
-  countryContinent: string = '';  // Variable to hold the continent input
+  countryName: string = '';       // Variable to hold the country name input
+  countryContinent: string = '';   // Variable to hold the continent input
+  countryList: Country[] = [];     // Initialize the country list
 
-  // Array to hold the list of countries
-  countryList: Country[] = [
-    { name: 'United States', continent: 'North America' }
-  ];
+  constructor(private countryService: CountryService) {
+    this.countryList = this.countryService.getCountries();  // Fetch countries from the service
+  }
 
-  // Method to add a new country to the list
   addCountry() {
     if (this.countryName && this.countryContinent) {
       const newCountry: Country = {
         name: this.countryName,
         continent: this.countryContinent
       };
-      this.countryList.push(newCountry);  // Add the new country to the list
-      this.clearInputs();  // Clear the input fields after adding the country
+      this.countryService.addCountry(newCountry);  // Use the service to add the country
+      this.clearInputs();  // Clear input fields
     }
   }
 
-  // Method to clear input fields
   clearInputs() {
     this.countryName = '';
     this.countryContinent = '';

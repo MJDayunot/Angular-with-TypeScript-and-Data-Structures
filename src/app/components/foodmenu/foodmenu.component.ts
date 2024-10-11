@@ -1,16 +1,10 @@
-import { Component } from '@angular/core';  // Import Component
-
-// Define an interface for the Food Item structure
-interface FoodItem {
-  name: string;  // Name of the food item
-  description: string;  // Description of the food item
-  price: number;  // Price of the food item
-}
+import { Component } from '@angular/core';
+import { FoodItem, FoodService } from '../../services/foodmenu.service'; // Adjust the import path as needed
 
 @Component({
-  selector: 'app-food-menu',  // Ensure this matches your HTML tag
-  templateUrl: './foodmenu.component.html',  // Path to the HTML file
-  styleUrls: ['./foodmenu.component.css']  // Path to the CSS file
+  selector: 'app-food-menu',
+  templateUrl: './foodmenu.component.html',
+  styleUrls: ['./foodmenu.component.css']
 })
 export class FoodMenuComponent {
   // Declare properties for food item details
@@ -19,10 +13,11 @@ export class FoodMenuComponent {
   foodPrice: number | null = null; // Variable to hold the food item price input
 
   // Array to hold the list of food items
-  foodList: FoodItem[] = [
-    { name: 'Spaghetti Carbonara', description: 'Classic Italian pasta with eggs, cheese, pancetta, and pepper.', price: 12.99 },
+  foodList: FoodItem[] = [];     // Initialize as an empty array
 
-  ];
+  constructor(private foodService: FoodService) {
+    this.foodList = this.foodService.getFoodItems(); // Fetch food items from the service
+  }
 
   // Method to add a new food item to the list
   addFoodItem() {
@@ -32,7 +27,7 @@ export class FoodMenuComponent {
         description: this.foodDescription,
         price: this.foodPrice,
       };
-      this.foodList.push(newFoodItem);  // Add the new food item to the list
+      this.foodService.addFoodItem(newFoodItem); // Use the service to add the food item
       this.clearInputs();  // Clear the input fields after adding the food item
     }
   }

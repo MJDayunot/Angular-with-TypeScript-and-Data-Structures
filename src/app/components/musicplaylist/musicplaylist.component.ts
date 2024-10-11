@@ -1,16 +1,10 @@
-import { Component } from '@angular/core';  // Import Component
-
-// Define an interface for the Song structure
-interface Song {
-  title: string;  // Title of the song
-  artist: string;  // Artist of the song
-  duration: string;  // Duration of the song (e.g., "3:45")
-}
+import { Component } from '@angular/core';
+import { Song, MusicService } from '../../services/musicplaylist.service'; // Adjust import path
 
 @Component({
-  selector: 'app-music-playlist',  // Ensure this matches your HTML tag
-  templateUrl: './musicplaylist.component.html',  // Path to the HTML file
-  styleUrls: ['./musicplaylist.component.css']  // Path to the CSS file
+  selector: 'app-music-playlist',
+  templateUrl: './musicplaylist.component.html',
+  styleUrls: ['./musicplaylist.component.css']
 })
 export class MusicPlaylistComponent {
   // Declare properties for song details
@@ -19,10 +13,11 @@ export class MusicPlaylistComponent {
   songDuration: string = '';   // Variable to hold the song duration input
 
   // Array to hold the list of songs
-  songList: Song[] = [
-    { title: 'Shape of You', artist: 'Ed Sheeran', duration: '3:53' },
+  songList: Song[] = [];       // Initialize as an empty array
 
-  ];
+  constructor(private musicService: MusicService) {
+    this.songList = this.musicService.getSongs(); // Fetch songs from the service
+  }
 
   // Method to add a new song to the list
   addSong() {
@@ -32,7 +27,7 @@ export class MusicPlaylistComponent {
         artist: this.songArtist,
         duration: this.songDuration
       };
-      this.songList.push(newSong);  // Add the new song to the list
+      this.musicService.addSong(newSong); // Use the service to add the song
       this.clearInputs();  // Clear the input fields after adding the song
     }
   }

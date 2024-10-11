@@ -1,25 +1,31 @@
 import { Component } from '@angular/core';
+import { FrameworkService } from '../../services/frameworklist.service'; // Adjust the import path as needed
+
+interface Framework {
+  name: string;
+  description: string;
+}
 
 @Component({
-  selector: 'app-framework-list',  // Ensure this matches your HTML tag
-  templateUrl: './frameworklist.component.html',  // Path to the HTML file
-  styleUrls: ['./frameworklist.component.css']  // Path to the CSS file
+  selector: 'app-framework-list',
+  templateUrl: './frameworklist.component.html',
+  styleUrls: ['./frameworklist.component.css']
 })
 export class FrameworkListComponent {
   frameworkName: string = '';  // Variable to hold the framework name input
   frameworkDescription: string = '';  // Variable to hold the framework description input
+  frameworkList: Framework[] = [];  // Array to hold the list of web development frameworks
 
-  // Array to hold the list of web development frameworks
-  frameworkList: { name: string; description: string }[] = [
-    { name: 'Angular', description: 'A platform for building mobile and desktop web applications.' },
-
-  ];
+  constructor(private frameworkService: FrameworkService) {
+    this.frameworkList = this.frameworkService.getFrameworkList(); // Fetch initial framework list from the service
+  }
 
   // Method to add a new framework to the list
   addFramework() {
     if (this.frameworkName && this.frameworkDescription) {
-      this.frameworkList.push({ name: this.frameworkName, description: this.frameworkDescription });  // Add the new framework to the list
+      this.frameworkService.addFramework({ name: this.frameworkName, description: this.frameworkDescription }); // Use the service to add the framework
       this.clearInput();  // Clear the input fields after adding the framework
+      this.frameworkList = this.frameworkService.getFrameworkList(); // Refresh the list
     }
   }
 

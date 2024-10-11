@@ -1,22 +1,28 @@
 import { Component } from '@angular/core';
+import { ClassroomService, Student } from '../../services/classroomlist.service'; // Adjust the import path as needed
 
 @Component({
-  selector: 'app-classroom-list',  // Ensure this matches your HTML tag
-  templateUrl: './classroomlist.component.html',  // Path to the HTML file
-  styleUrls: ['./classroomlist.component.css']  // Path to the CSS file
+  selector: 'app-classroom-list',
+  templateUrl: './classroomlist.component.html',
+  styleUrls: ['./classroomlist.component.css']
 })
 export class ClassroomListComponent {
   studentName: string = '';  // Variable to hold the student name input
   roomNumber: string = '';    // Variable to hold the room number input
-  studentList: { name: string; roomNumber: string }[] = [  // Array to hold the list of students
-    { name: 'John Doe', roomNumber: '101' },
+  studentList: Student[] = []; // Initialize as an empty array
 
-  ];
+  constructor(private classroomService: ClassroomService) {
+    this.studentList = this.classroomService.getStudents(); // Fetch students from the service
+  }
 
   // Method to add a new student to the list
   addStudent() {
     if (this.studentName && this.roomNumber) {
-      this.studentList.push({ name: this.studentName, roomNumber: this.roomNumber });  // Add the new student to the list
+      const newStudent: Student = {
+        name: this.studentName,
+        roomNumber: this.roomNumber,
+      };
+      this.classroomService.addStudent(newStudent); // Use the service to add the student
       this.clearInput();  // Clear the input fields after adding the student
     }
   }

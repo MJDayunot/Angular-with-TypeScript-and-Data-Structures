@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';  // Import Component
+import { Component } from '@angular/core';
+import { FruitlistService } from '../../services/fruitlist.service';  // Import the service
 
-// Define an interface for the Fruit structure
 interface Fruit {
   name: string;
   color: string;
@@ -8,22 +8,25 @@ interface Fruit {
 }
 
 @Component({
-  selector: 'app-fruit-list',  // Ensure this matches your HTML tag
-  templateUrl: './fruitlist.component.html',  // Path to the HTML file
-  styleUrls: ['./fruitlist.component.css']  // Path to the CSS file
+  selector: 'app-fruit-list',
+  templateUrl: './fruitlist.component.html',
+  styleUrls: ['./fruitlist.component.css']
 })
 export class FruitListComponent {
-  // Declare properties for fruit details
-  fruitName: string = '';  // Variable to hold the fruit name input
-  fruitColor: string = '';  // Variable to hold the fruit color input
-  fruitPricePerKg: number | null = null;  // Variable to hold the fruit price input
+  fruitName: string = '';
+  fruitColor: string = '';
+  fruitPricePerKg: number | null = null;
+  fruitList: Fruit[] = [];
 
-  // Array to hold the list of fruits
-  fruitList: Fruit[] = [
-    { name: 'Apple', color: 'Red', pricePerKg: 100 }
-  ];
+  // Inject the service into the component
+  constructor(private fruitlistService: FruitlistService) {}
 
-  // Method to add a new fruit to the list
+  // Load the fruits from the service when the component initializes
+  ngOnInit() {
+    this.fruitList = this.fruitlistService.getFruits();
+  }
+
+  // Method to add a new fruit using the service
   addFruit() {
     if (this.fruitName && this.fruitColor && this.fruitPricePerKg !== null) {
       const newFruit: Fruit = {
@@ -31,15 +34,15 @@ export class FruitListComponent {
         color: this.fruitColor,
         pricePerKg: this.fruitPricePerKg
       };
-      this.fruitList.push(newFruit);  // Add the new fruit to the list
-      this.clearInputs();  // Clear the input fields after adding the fruit
+      this.fruitlistService.addFruit(newFruit);  // Add the fruit via the service
+      this.fruitList = this.fruitlistService.getFruits();  // Refresh the list
+      this.clearInputs();
     }
   }
 
-  // Method to clear input fields
   clearInputs() {
     this.fruitName = '';
     this.fruitColor = '';
-    this.fruitPricePerKg = null;  // Reset to null
+    this.fruitPricePerKg = null;
   }
 }

@@ -1,30 +1,32 @@
-import { Component } from '@angular/core';  // Import Component
+import { Component, OnInit } from '@angular/core';
+import { CitylistService } from '../../services/citylist.service';  // Import the service
 
-// Define an interface for the City structure
 interface City {
   name: string;
   country: string;
-  population: number;  // Population of the city
+  population: number;
 }
 
 @Component({
-  selector: 'app-citylist',  // Ensure this matches your HTML tag
-  templateUrl: './citylist.component.html',  // Path to the HTML file
-  styleUrls: ['./citylist.component.css']  // Path to the CSS file
+  selector: 'app-citylist',
+  templateUrl: './citylist.component.html',
+  styleUrls: ['./citylist.component.css']
 })
-export class CityListComponent {
-  // Declare properties for city details
-  cityName: string = '';  // Variable to hold the city name input
-  cityCountry: string = '';  // Variable to hold the city country input
-  cityPopulation: number | null = null;  // Variable to hold the city population input
+export class CityListComponent implements OnInit {
+  cityName: string = '';
+  cityCountry: string = '';
+  cityPopulation: number | null = null;
+  cityList: City[] = [];
 
-  // Array to hold the list of cities
-  cityList: City[] = [
-    { name: 'New York', country: 'USA', population: 8419600 }
+  // Inject the service into the component
+  constructor(private citylistService: CitylistService) {}
 
-  ];
+  // Load the cities from the service when the component initializes
+  ngOnInit() {
+    this.cityList = this.citylistService.getCities();
+  }
 
-  // Method to add a new city to the list
+  // Method to add a new city using the service
   addCity() {
     if (this.cityName && this.cityCountry && this.cityPopulation !== null) {
       const newCity: City = {
@@ -32,15 +34,15 @@ export class CityListComponent {
         country: this.cityCountry,
         population: this.cityPopulation
       };
-      this.cityList.push(newCity);  // Add the new city to the list
-      this.clearInputs();  // Clear the input fields after adding the city
+      this.citylistService.addCity(newCity);  // Add the city via the service
+      this.cityList = this.citylistService.getCities();  // Refresh the list
+      this.clearInputs();
     }
   }
 
-  // Method to clear input fields
   clearInputs() {
     this.cityName = '';
     this.cityCountry = '';
-    this.cityPopulation = null;  // Reset to null
+    this.cityPopulation = null;
   }
 }
