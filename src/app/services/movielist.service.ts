@@ -3,14 +3,13 @@ import { Injectable } from '@angular/core';
 interface Movie {
   title: string;
   director: string;
-  releaseYear: number;  // Release year of the movie
-}
+  releaseYear: number;  
 
 @Injectable({
   providedIn: 'root',
 })
 export class MovielistService {
-  // List of movies
+  
   private movieList: Movie[] = [
     { title: 'Inception', director: 'Christopher Nolan', releaseYear: 2010 }
   ];
