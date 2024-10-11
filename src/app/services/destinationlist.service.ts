@@ -1,10 +1,9 @@
-// destination.service.ts
 import { Injectable } from '@angular/core';
 
 export interface Destination {
-  name: string;        // Name of the destination
-  country: string;     // Country of the destination
-  attractions: string; // Main attractions at the destination
+  name: string;       
+  country: string;     
+  attractions: string; 
 }
 
 @Injectable({
