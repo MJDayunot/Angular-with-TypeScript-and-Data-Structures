@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
 interface Product {
-  name: string;      // Name of the product
-  price: number;     // Price of the product
-  quantity: number;  // Quantity of the product in stock
+  name: string;      
+  price: number;     
+  quantity: number;  
 }
 
 @Injectable({
