@@ -2,8 +2,8 @@
 import { Injectable } from '@angular/core';
 
 export interface Tool {
-  name: string;  // Name of the tool
-  type: string;  // Type of the tool
+  name: string;  
+  type: string; 
 }
 
 @Injectable({
