@@ -2,9 +2,9 @@
 import { Injectable } from '@angular/core';
 
 export interface Game {
-  title: string;          // Title of the game
-  genre: string;          // Genre of the game
-  releaseYear: number;    // Release year of the game
+  title: string;          
+  genre: string;          
+  releaseYear: number;    
 }
 
 @Injectable({
