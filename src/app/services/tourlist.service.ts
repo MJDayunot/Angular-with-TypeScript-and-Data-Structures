@@ -13,7 +13,7 @@ export class TourService {
     { date: '2024-11-01', location: 'Los Angeles, CA' },
   ];
 
-  // Method to get the list of tours
+ 
   getTourList(): Tour[] {
     return this.tourList;
   }
