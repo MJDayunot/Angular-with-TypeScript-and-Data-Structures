@@ -4,6 +4,7 @@ interface Movie {
   title: string;
   director: string;
   releaseYear: number;  
+}
 
 @Injectable({
   providedIn: 'root',
