@@ -13,7 +13,7 @@ export class LibraryService {
     { name: 'Lodash', version: '4.17.21' },
   ];
 
-  // Method to get the list of libraries
+  
   getLibraryList(): Library[] {
     return this.libraryList;
   }
