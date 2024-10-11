@@ -2,8 +2,8 @@
 import { Injectable } from '@angular/core';
 
 export interface Vegetable {
-  name: string;  // Name of the vegetable
-  price: number; // Price of the vegetable
+  name: string;  
+  price: number; 
 }
 
 @Injectable({
