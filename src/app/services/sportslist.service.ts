@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 
 // Define an interface for the Sport structure
 export interface Sport {
-  name: string;      // Name of the sport
-  category: string;  // Category (e.g., team, individual)
+  name: string;      
+  category: string;  
 }
 
 @Injectable({
-  providedIn: 'root'  // This makes the service available throughout the application
+  providedIn: 'root'  
 })
 export class SportService {
   private sportsList: Sport[] = [
