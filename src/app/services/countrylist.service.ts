@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 
 // Define an interface for the Country structure
 export interface Country {
-  name: string;       // Name of the country
-  continent: string;  // Continent the country belongs to
+  name: string;       
+  continent: string;  
 }
 
 @Injectable({
-  providedIn: 'root'  // This makes the service available throughout the application
+  providedIn: 'root'  
 })
 export class CountryService {
   private countryList: Country[] = [
