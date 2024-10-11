@@ -13,7 +13,7 @@ export class FrameworkService {
     { name: 'Angular', description: 'A platform for building mobile and desktop web applications.' },
   ];
 
-  // Method to get the list of frameworks
+ 
   getFrameworkList(): Framework[] {
     return this.frameworkList;
   }
