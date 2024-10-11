@@ -1,10 +1,9 @@
-// stationery.service.ts
 import { Injectable } from '@angular/core';
 
 export interface StationeryItem {
-  name: string;       // Name of the stationery item
-  quantity: number;   // Quantity of the stationery item
-  price: number;      // Price of the stationery item
+  name: string;      
+  quantity: number;   
+  price: number;      
 }
 
 @Injectable({
