@@ -1,4 +1,3 @@
-// developer-tools.service.ts
 import { Injectable } from '@angular/core';
 
 interface DeveloperTool {
